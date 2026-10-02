@@ -5,11 +5,13 @@ import Clock from './Clock'
 import { GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
+import ThemeToggle from './ThemeToggle'
 
 const links = [
-  { href: '#work', label: 'Work' },
   { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
   { href: '#experience', label: 'Experience' },
+  { href: '#work', label: 'Projects' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -73,6 +75,7 @@ export default function Nav({ lenis }) {
 
           <div className="nav__right">
             <Clock />
+            <ThemeToggle />
             <Magnetic strength={0.25}>
               <a
                 href={profile.github}

@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'motion/react'
-import { useRef } from 'react'
-import { claudeCredit, projects } from '../data'
+import { useRef, useState } from 'react'
+import { claudeCredit, projectFilters, projects } from '../data'
 import useMediaQuery from '../useMediaQuery'
 import { ArrowIcon, GitHubIcon, SparkIcon } from './Icons'
 import ProjectVisual from './ProjectVisual'
@@ -10,29 +10,67 @@ import SectionHead from './SectionHead'
 // Cards pin and stack only where a whole card fits on screen; elsewhere they simply flow.
 const STACK_QUERY = '(min-width: 961px) and (min-height: 760px)'
 
+const countFor = (filter) =>
+  filter === 'All' ? projects.length : projects.filter((p) => p.categories.includes(filter)).length
+
+// Only offer filters that at least one project uses.
+const filters = projectFilters.filter((f) => countFor(f) > 0)
+
 export default function Projects() {
-  const ref = useRef(null)
   const stacked = useMediaQuery(STACK_QUERY)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
+  const [filter, setFilter] = useState('All')
+  const shown = filter === 'All' ? projects : projects.filter((p) => p.categories.includes(filter))
 
   return (
     <section id="work" className="section work">
       <div className="wrap">
-        <SectionHead index="02" label="Selected work" title="Things I’ve built." />
-        <div className={`stack ${stacked ? 'is-stacked' : ''}`} ref={ref}>
-          {projects.map((p, i) => (
-            <Card
-              key={p.id}
-              project={p}
-              index={i}
-              total={projects.length}
-              progress={scrollYProgress}
-              stacked={stacked}
-            />
-          ))}
-        </div>
+        <SectionHead index="04" label="Selected work" title="Things I’ve built.">
+          <div className="tabs" role="group" aria-label="Filter projects">
+            {filters.map((f) => (
+              <button
+                key={f}
+                type="button"
+                className={`tab ${filter === f ? 'is-active' : ''}`}
+                aria-pressed={filter === f}
+                onClick={() => setFilter(f)}
+              >
+                {filter === f && (
+                  <motion.span
+                    layoutId="tab-pill"
+                    className="tab__pill"
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="tab__label">{f}</span>
+                <span className="tab__count">{countFor(f)}</span>
+              </button>
+            ))}
+          </div>
+        </SectionHead>
+        {/* Re-keyed per filter so the stack re-measures its scroll range and the cards animate in. */}
+        <Stack key={filter} items={shown} stacked={stacked} />
       </div>
     </section>
+  )
+}
+
+function Stack({ items, stacked }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
+
+  return (
+    <div className={`stack ${stacked ? 'is-stacked' : ''}`} ref={ref}>
+      {items.map((p, i) => (
+        <Card
+          key={p.id}
+          project={p}
+          index={i}
+          total={items.length}
+          progress={scrollYProgress}
+          stacked={stacked}
+        />
+      ))}
+    </div>
   )
 }
 
@@ -69,7 +107,9 @@ function Card({ project: p, index, total, progress, stacked }) {
       >
         <div className="card__info">
           <div className="card__top">
-            <span className="card__num">{String(index + 1).padStart(2, '0')}</span>
+            <span className="card__num">
+              {String(projects.indexOf(p) + 1).padStart(2, '0')}
+            </span>
             <span className="card__kind">{p.kind}</span>
           </div>
           <h3 className="card__title">{p.name}</h3>

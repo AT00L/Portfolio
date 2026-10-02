@@ -20,7 +20,7 @@ export default function Contact() {
       <div className="wrap">
         <motion.div initial="hidden" whileInView="show" viewport={inView}>
           <motion.p className="eyebrow" variants={fadeUp}>
-            <span>(04)</span> Contact
+            <span>(05)</span> Contact
           </motion.p>
           <h2 className="contact__title">
             <span className="mask">

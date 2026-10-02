@@ -4,6 +4,8 @@ export const profile = {
   name: 'Atul Lilhare',
   first: 'Atul',
   role: 'SDE-2',
+  // Typed out one after another in the hero.
+  roles: ['SDE-2 at CUBE.', 'React Native developer.', 'Full-stack engineer.', 'I build things that ship.'],
   company: 'CUBE',
   companyUrl: 'https://cube.ms',
   years: 4,
@@ -38,7 +40,7 @@ export const stack = [
 ]
 
 export const about =
-  'I’m a software developer who likes the whole stack — from the pixel a user taps to the query that answers it. For four years I’ve been shipping production software at CUBE. I build for the web with React and for phones with React Native, and in between I make my own tools: browser extensions, APIs, full-stack apps. If it can be made faster, simpler or more reliable, I’m probably already poking at it.'
+  'I’m a software developer who likes the whole stack — from the pixel a user taps to the query that answers it. For four years I’ve been shipping production software at CUBE. I build for the web with React and for phones with React Native, and in between I make my own tools: browser extensions, APIs, full-stack apps.'
 
 export const stats = [
   { value: 4, suffix: '+', label: 'Years shipping production code' },
@@ -59,108 +61,112 @@ export const experience = [
       'Turn product requirements into clean, maintainable code that holds up at scale.',
       'Review code, fix the hard bugs, and keep the team’s codebase healthy.',
     ],
-    stack: [
-      {
-        label: 'Mobile',
-        items: [
-          'React Native',
-          'Expo',
-          'EAS Build',
-          'OTA Updates',
-          'React Navigation',
-          'Reanimated',
-          'Push Notifications',
-          'Firebase Analytics',
-          'Google Maps',
-        ],
-      },
-      {
-        label: 'Web & Desktop',
-        items: [
-          'React',
-          'TypeScript',
-          'Redux Toolkit',
-          'MUI',
-          'Tailwind CSS',
-          'i18next',
-          'HOOPS 3D Viewer',
-          'ExcelJS',
-          'Electron',
-        ],
-      },
-      {
-        label: 'Backend',
-        items: [
-          'Node.js',
-          'Express',
-          'REST APIs',
-          'MVC Architecture',
-          'Microservices',
-          'MongoDB',
-          'PostgreSQL',
-          'Redis',
-          'Zod',
-          'JWT',
-          'Bcrypt',
-          'OAuth / SSO',
-        ],
-      },
-      {
-        label: 'Cloud & DevOps',
-        items: [
-          'AWS EC2',
-          'AWS S3',
-          'AWS IAM',
-          'Docker',
-          'GitLab CI/CD',
-          'SonarQube',
-          'Sentry',
-          'PostHog',
-          'Microsoft Clarity',
-        ],
-      },
-      {
-        label: 'Tools & Testing',
-        items: [
-          'Git',
-          'GitHub',
-          'Postman',
-          'Axios',
-          'Vitest',
-          'Cypress',
-          'ESLint',
-          'Prettier',
-          'Claude Code',
-        ],
-      },
+    tags: [
+      'React Native',
+      'Expo',
+      'TypeScript',
+      'React',
+      'Node.js',
+      'Express',
+      'Microservices',
+      'MongoDB',
+      'PostgreSQL',
+      'Redis',
+      'AWS',
+      'Docker',
     ],
   },
 ]
 
-export const capabilities = [
-  {
-    title: 'Frontend',
-    icon: 'web',
-    body: 'Responsive, accessible interfaces in React — fast to load and smooth to use.',
-    items: ['React', 'Vite', 'Tailwind', 'MUI'],
-  },
+// The Skills section. `logo` is a Simple Icons slug, or one of the line icons in
+// SkillIcon.jsx for things that have no brand mark.
+export const skills = [
   {
     title: 'Mobile',
     icon: 'mobile',
-    body: 'Cross-platform apps in React Native — one codebase, a native feel on iOS and Android.',
-    items: ['React Native', 'iOS', 'Android'],
+    blurb: 'Cross-platform apps in React Native and Expo — one codebase, a native feel on iOS and Android.',
+    items: [
+      { name: 'React Native', logo: 'react' },
+      { name: 'Expo', logo: 'expo' },
+      { name: 'EAS Build', logo: 'expo' },
+      { name: 'OTA Updates', logo: 'refresh' },
+      { name: 'React Navigation', logo: 'route' },
+      { name: 'Reanimated', logo: 'motion' },
+      { name: 'Push Notifications', logo: 'bell' },
+      { name: 'Firebase Analytics', logo: 'firebase' },
+      { name: 'Google Maps', logo: 'googlemaps' },
+    ],
+  },
+  {
+    title: 'Web & Desktop',
+    icon: 'web',
+    blurb: 'Fast, accessible interfaces in React and TypeScript — in the browser and on the desktop.',
+    items: [
+      { name: 'JavaScript', logo: 'javascript' },
+      { name: 'TypeScript', logo: 'typescript' },
+      { name: 'React', logo: 'react' },
+      { name: 'Redux Toolkit', logo: 'redux' },
+      { name: 'MUI', logo: 'mui' },
+      { name: 'Tailwind CSS', logo: 'tailwindcss' },
+      { name: 'i18next', logo: 'i18next' },
+      { name: 'HOOPS 3D Viewer', logo: 'cube' },
+      { name: 'ExcelJS', logo: 'table' },
+      { name: 'Electron', logo: 'electron' },
+      { name: 'Vite', logo: 'vite' },
+      { name: 'HTML & CSS', logo: 'html5' },
+    ],
   },
   {
     title: 'Backend',
     icon: 'server',
-    body: 'APIs and services in Node.js and Express, backed by MongoDB, with real auth.',
-    items: ['Node.js', 'Express', 'MongoDB', 'JWT'],
+    blurb: 'APIs and services in Node.js and Express, backed by MongoDB, PostgreSQL and Redis, with real auth.',
+    items: [
+      { name: 'Node.js', logo: 'nodedotjs' },
+      { name: 'Express', logo: 'express' },
+      { name: 'REST APIs', logo: 'api' },
+      { name: 'MVC Architecture', logo: 'layers' },
+      { name: 'Microservices', logo: 'nodes' },
+      { name: 'MongoDB', logo: 'mongodb' },
+      { name: 'PostgreSQL', logo: 'postgresql' },
+      { name: 'Redis', logo: 'redis' },
+      { name: 'Zod', logo: 'zod' },
+      { name: 'JWT', logo: 'jsonwebtokens' },
+      { name: 'Bcrypt', logo: 'lock' },
+      { name: 'OAuth / SSO', logo: 'key' },
+    ],
   },
   {
-    title: 'Tooling',
+    title: 'Cloud & DevOps',
+    icon: 'cloud',
+    blurb: 'Shipping, monitoring and keeping production healthy.',
+    items: [
+      { name: 'AWS EC2', logo: 'aws' },
+      { name: 'AWS S3', logo: 'aws' },
+      { name: 'AWS IAM', logo: 'aws' },
+      { name: 'Docker', logo: 'docker' },
+      { name: 'GitLab CI/CD', logo: 'gitlab' },
+      { name: 'SonarQube', logo: 'sonarqubeserver' },
+      { name: 'Sentry', logo: 'sentry' },
+      { name: 'PostHog', logo: 'posthog' },
+      { name: 'Microsoft Clarity', logo: 'chart' },
+    ],
+  },
+  {
+    title: 'Tools & Testing',
     icon: 'tool',
-    body: 'Browser extensions and developer tools that remove friction from everyday work.',
-    items: ['DevTools', 'AWS', 'Git'],
+    blurb: 'The everyday kit — plus the extensions and AI that speed it up.',
+    items: [
+      { name: 'Git', logo: 'git' },
+      { name: 'GitHub', logo: 'github' },
+      { name: 'Postman', logo: 'postman' },
+      { name: 'Axios', logo: 'axios' },
+      { name: 'Vitest', logo: 'vitest' },
+      { name: 'Cypress', logo: 'cypress' },
+      { name: 'ESLint', logo: 'eslint' },
+      { name: 'Prettier', logo: 'prettier' },
+      { name: 'Chrome Extensions', logo: 'googlechrome' },
+      { name: 'Claude Code', logo: 'claude' },
+    ],
   },
 ]
 
@@ -170,9 +176,12 @@ export const claudeCredit = {
   note: 'Idea to existence with Claude',
 }
 
+export const projectFilters = ['All', 'Full-stack', 'Frontend', 'Backend', 'Extension']
+
 export const projects = [
   {
     id: 'url-shortener',
+    categories: ['Full-stack', 'Backend'],
     name: 'URL Shortener',
     kind: 'Full-stack App',
     blurb:
@@ -184,6 +193,7 @@ export const projects = [
   },
   {
     id: 'yourlabtest',
+    categories: ['Full-stack', 'Frontend'],
     name: 'YourLabTest',
     kind: 'Monorepo',
     blurb:
@@ -194,6 +204,7 @@ export const projects = [
   },
   {
     id: 'portfolio',
+    categories: ['Frontend'],
     name: 'This Portfolio',
     kind: 'Website',
     blurb:
@@ -205,6 +216,7 @@ export const projects = [
   },
   {
     id: 'css-injector',
+    categories: ['Extension'],
     name: 'Custom CSS Injector',
     kind: 'Chrome Extension',
     blurb:

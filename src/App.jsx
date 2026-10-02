@@ -11,6 +11,7 @@ import Marquee from './components/Marquee'
 import Nav from './components/Nav'
 import Preloader from './components/Preloader'
 import Projects from './components/Projects'
+import Skills from './components/Skills'
 
 const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -85,8 +86,9 @@ export default function App() {
         <Hero ready={ready} />
         <Marquee />
         <About />
-        <Projects />
+        <Skills />
         <Experience />
+        <Projects />
       </main>
       <Contact />
     </MotionConfig>

@@ -62,15 +62,29 @@ export default function Hero({ ready }) {
         </motion.p>
 
         <h1 className="hero__title">
-          <span className="mask">
-            <motion.span variants={rise} custom={0} initial="hidden" animate={state}>
-              I build things
+          <span className="sr-only">
+            Hello, I’m {profile.name} — {profile.roles.join(' ')}
+          </span>
+          <span className="mask" aria-hidden="true">
+            <motion.span
+              className="hero__hello"
+              variants={rise}
+              custom={0}
+              initial="hidden"
+              animate={state}
+            >
+              Hello, I’m <em>{profile.first}</em>
             </motion.span>
           </span>
-          <span className="mask">
-            <motion.span variants={rise} custom={1} initial="hidden" animate={state}>
-              that <em>ship.</em>
-              <span className="hero__caret" aria-hidden="true" />
+          <span className="mask" aria-hidden="true">
+            <motion.span
+              className="hero__role"
+              variants={rise}
+              custom={1}
+              initial="hidden"
+              animate={state}
+            >
+              <Typewriter phrases={profile.roles} start={ready} />
             </motion.span>
           </span>
         </h1>
@@ -78,9 +92,9 @@ export default function Hero({ ready }) {
         <div className="hero__bottom">
           <div className="hero__intro">
             <motion.p variants={fade} custom={0} initial="hidden" animate={state}>
-              Hi, I’m {profile.first} — a software developer with {profile.years}+ years of building
-              production software at {profile.company}. I build web apps in React, mobile apps in React
-              Native, and the APIs and tooling behind them.
+              A software developer with {profile.years}+ years of building production software at{' '}
+              {profile.company}. I build web apps in React, mobile apps in React Native, and the APIs
+              and tooling behind them.
             </motion.p>
             <motion.div
               className="hero__cta"
@@ -121,7 +135,7 @@ export default function Hero({ ready }) {
           </div>
 
           <motion.div className="hero__term" variants={fade} custom={2} initial="hidden" animate={state}>
-            <Terminal start={ready} />
+            <Terminal start={ready} delay={2200} />
           </motion.div>
         </div>
       </motion.div>
@@ -151,25 +165,67 @@ const script = [
   { cmd: 'ls ~/projects', out: 'css-injector  url-shortener  yourlabtest  portfolio' },
 ]
 
-function Terminal({ start }) {
+// Types each phrase, holds it, deletes it, then moves to the next one.
+function Typewriter({ phrases, start }) {
+  const reduce = useReducedMotion()
+  const [index, setIndex] = useState(0)
+  const [chars, setChars] = useState(0)
+  const [deleting, setDeleting] = useState(false)
+
+  useEffect(() => {
+    if (!start || reduce) return
+    const full = phrases[index]
+    let delay
+    if (!deleting) delay = chars === 0 ? 900 : chars < full.length ? 55 + Math.random() * 50 : 2000
+    else delay = chars > 0 ? 28 : 350
+    const t = setTimeout(() => {
+      if (!deleting && chars < full.length) setChars(chars + 1)
+      else if (!deleting) setDeleting(true)
+      else if (chars > 0) setChars(chars - 1)
+      else {
+        setDeleting(false)
+        setIndex((index + 1) % phrases.length)
+      }
+    }, delay)
+    return () => clearTimeout(t)
+  }, [start, reduce, phrases, index, chars, deleting])
+
+  const text = reduce ? phrases[0] : phrases[index].slice(0, chars)
+
+  return (
+    <>
+      {text}
+      <span className="hero__caret" />
+    </>
+  )
+}
+
+function Terminal({ start, delay = 0 }) {
   const reduce = useReducedMotion()
   const [line, setLine] = useState(0)
   const [chars, setChars] = useState(0)
+  const [armed, setArmed] = useState(false)
 
   useEffect(() => {
-    if (!start || reduce || line >= script.length) return
+    if (!start || reduce) return
+    const t = setTimeout(() => setArmed(true), delay)
+    return () => clearTimeout(t)
+  }, [start, reduce, delay])
+
+  useEffect(() => {
+    if (!armed || reduce || line >= script.length) return
     const cmd = script[line].cmd
     const typing = chars < cmd.length
-    const delay = chars === 0 ? 650 : typing ? 45 + Math.random() * 55 : 380
+    const wait = chars === 0 ? 650 : typing ? 45 + Math.random() * 55 : 380
     const t = setTimeout(() => {
       if (typing) setChars((c) => c + 1)
       else {
         setLine((l) => l + 1)
         setChars(0)
       }
-    }, delay)
+    }, wait)
     return () => clearTimeout(t)
-  }, [start, reduce, line, chars])
+  }, [armed, reduce, line, chars])
 
   const shown = reduce ? script.length : line
 

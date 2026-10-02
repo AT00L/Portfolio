@@ -4,7 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b0b0c" />
+    <meta name="theme-color" content="#f5f4ef" />
+    <script>
+      // Apply the saved theme before first paint so there's no flash.
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark'
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0b0b0c')
+        }
+      } catch (e) {}
+    </script>
     <title>Atul Lilhare — Software Developer</title>
     <meta
       name="description"
