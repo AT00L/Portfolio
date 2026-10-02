@@ -1,16 +1,28 @@
-# React + Vite
+# Atul Lilhare — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio built with React 19 and Vite, using [Lenis](https://github.com/darkroomengineering/lenis) for smooth scrolling and [Motion](https://motion.dev) for scroll-linked animation.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev       # http://localhost:5173
+npm run build     # production build in dist/
+npm run preview   # serve the build locally
+```
 
-## React Compiler
+## Edit the content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Everything the site says lives in [`src/data.js`](src/data.js): name, role, GitHub link, stack, about text, stats, experience, capabilities and projects. Change it there and the page updates.
 
-## Expanding the ESLint configuration
+## Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Path | What it is |
+| --- | --- |
+| `src/App.jsx` | Page layout, Lenis setup, intro loader, in-page anchor scrolling |
+| `src/components/` | One file per section (Hero, Marquee, About, Projects, Experience, Contact) plus small pieces (Nav, Cursor, Magnetic, RollText, Clock) |
+| `src/components/ProjectVisual.jsx` | The animated mockups on each project card |
+| `src/index.css` | All styles; colour and font tokens are at the top |
+| `src/motion.js` | Shared easing and reveal animations |
+
+Animations respect `prefers-reduced-motion`: smooth scrolling, the intro and motion effects switch off.

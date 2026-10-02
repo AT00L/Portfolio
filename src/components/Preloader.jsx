@@ -1,0 +1,49 @@
+import { animate, motion } from 'motion/react'
+import { useEffect, useRef } from 'react'
+import { profile } from '../data'
+
+const curtain = [0.76, 0, 0.24, 1]
+
+export default function Preloader({ onDone }) {
+  const countRef = useRef(null)
+
+  useEffect(() => {
+    const controls = animate(0, 100, {
+      duration: 1.4,
+      ease: [0.65, 0, 0.35, 1],
+      onUpdate: (v) => {
+        if (countRef.current) countRef.current.textContent = String(Math.round(v)).padStart(3, '0')
+      },
+      onComplete: onDone,
+    })
+    return () => controls.stop()
+  }, [onDone])
+
+  return (
+    <motion.div
+      className="loader"
+      exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 1, ease: curtain } }}
+      initial={{ clipPath: 'inset(0 0 0% 0)' }}
+    >
+      <motion.div
+        className="loader__name"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -40, opacity: 0 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {profile.name}
+        <em> — building</em>
+      </motion.div>
+      <div className="loader__count" ref={countRef}>
+        000
+      </div>
+      <motion.div
+        className="loader__bar"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
+      />
+    </motion.div>
+  )
+}
