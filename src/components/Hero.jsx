@@ -9,7 +9,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data'
 import { ease } from '../motion'
-import { ArrowIcon, GitHubIcon } from './Icons'
+import { ArrowIcon, CodeIcon, GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
 
@@ -104,6 +104,17 @@ export default function Hero({ ready }) {
                 >
                   <GitHubIcon />
                   <RollText text={`@${profile.githubHandle}`} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href={profile.leetcode}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn hover-roll"
+                >
+                  <CodeIcon />
+                  <RollText text="LeetCode" />
                 </a>
               </Magnetic>
             </motion.div>

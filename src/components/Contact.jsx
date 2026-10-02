@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { profile } from '../data'
 import { ease, fadeUp, reveal } from '../motion'
 import Clock from './Clock'
-import { ArrowIcon, GitHubIcon } from './Icons'
+import { ArrowIcon, CodeIcon, GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
 
@@ -37,15 +37,37 @@ export default function Contact() {
         </motion.div>
 
         <div className="contact__row">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={inView}
             transition={{ duration: 1, ease, delay: 0.2 }}
           >
-            Always happy to talk shop — interesting problems, side projects, or just good
-            engineering. The quickest way to see what I’m up to is my GitHub.
-          </motion.p>
+            <p>
+              Always happy to talk shop — interesting problems, side projects, or just good
+              engineering. My code lives on GitHub, and my problem-solving on LeetCode.
+            </p>
+            <div className="contact__links">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn--sm hover-roll"
+              >
+                <GitHubIcon />
+                <RollText text={`@${profile.githubHandle}`} />
+              </a>
+              <a
+                href={profile.leetcode}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn--sm hover-roll"
+              >
+                <CodeIcon />
+                <RollText text={`LeetCode · ${profile.leetcodeHandle}`} />
+              </a>
+            </div>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}

@@ -3,13 +3,15 @@
 export const profile = {
   name: 'Atul Lilhare',
   first: 'Atul',
-  role: 'Software Developer',
+  role: 'SDE-2',
   company: 'CUBE',
   companyUrl: 'https://cube.ms',
   years: 4,
   since: 2022,
   github: 'https://github.com/AT00L',
   githubHandle: 'AT00L',
+  leetcode: 'https://leetcode.com/u/MaiAtulHoon/',
+  leetcodeHandle: 'MaiAtulHoon',
   timezone: 'Asia/Kolkata',
   tzLabel: 'IST',
 }
@@ -22,6 +24,7 @@ export const stack = [
   'Node.js',
   'Express',
   'MongoDB',
+  'PostgreSQL',
   'Tailwind CSS',
   'Material UI',
   'Vite',
@@ -29,6 +32,7 @@ export const stack = [
   'REST APIs',
   'JWT Auth',
   'AWS',
+  'EC2',
   'Git',
   'HTML & CSS',
 ]
@@ -46,7 +50,7 @@ export const experience = [
   {
     company: 'CUBE',
     url: 'https://cube.ms',
-    role: 'Software Developer',
+    role: 'SDE-2 · Software Developer',
     period: '2022 — Present',
     years: 4,
     current: true,
@@ -55,7 +59,81 @@ export const experience = [
       'Turn product requirements into clean, maintainable code that holds up at scale.',
       'Review code, fix the hard bugs, and keep the team’s codebase healthy.',
     ],
-    tags: ['JavaScript', 'React', 'Node.js', 'APIs'],
+    stack: [
+      {
+        label: 'Mobile',
+        items: [
+          'React Native',
+          'Expo',
+          'EAS Build',
+          'OTA Updates',
+          'React Navigation',
+          'Reanimated',
+          'Push Notifications',
+          'Firebase Analytics',
+          'Google Maps',
+        ],
+      },
+      {
+        label: 'Web & Desktop',
+        items: [
+          'React',
+          'TypeScript',
+          'Redux Toolkit',
+          'MUI',
+          'Tailwind CSS',
+          'i18next',
+          'HOOPS 3D Viewer',
+          'ExcelJS',
+          'Electron',
+        ],
+      },
+      {
+        label: 'Backend',
+        items: [
+          'Node.js',
+          'Express',
+          'REST APIs',
+          'MVC Architecture',
+          'Microservices',
+          'MongoDB',
+          'PostgreSQL',
+          'Redis',
+          'Zod',
+          'JWT',
+          'Bcrypt',
+          'OAuth / SSO',
+        ],
+      },
+      {
+        label: 'Cloud & DevOps',
+        items: [
+          'AWS EC2',
+          'AWS S3',
+          'AWS IAM',
+          'Docker',
+          'GitLab CI/CD',
+          'SonarQube',
+          'Sentry',
+          'PostHog',
+          'Microsoft Clarity',
+        ],
+      },
+      {
+        label: 'Tools & Testing',
+        items: [
+          'Git',
+          'GitHub',
+          'Postman',
+          'Axios',
+          'Vitest',
+          'Cypress',
+          'ESLint',
+          'Prettier',
+          'Claude Code',
+        ],
+      },
+    ],
   },
 ]
 
@@ -82,21 +160,17 @@ export const capabilities = [
     title: 'Tooling',
     icon: 'tool',
     body: 'Browser extensions and developer tools that remove friction from everyday work.',
-    items: ['Chrome MV3', 'DevTools', 'AWS', 'Git'],
+    items: ['DevTools', 'AWS', 'Git'],
   },
 ]
 
+// Shown at the end of any project card with `madeWithClaude: true`.
+export const claudeCredit = {
+  label: 'Made using Claude',
+  note: 'Idea to existence with Claude',
+}
+
 export const projects = [
-  {
-    id: 'css-injector',
-    name: 'Custom CSS Injector',
-    kind: 'Chrome Extension',
-    blurb:
-      'Pick any element on any site, write CSS for it, and have it reapplied on every visit — even after the site renames its ids and classes. Ranked selectors plus an element fingerprint re-find the node; a DevTools sidebar pane gives exact control.',
-    tags: ['Manifest V3', 'JavaScript', 'DevTools API', 'Zero dependencies'],
-    repo: 'https://github.com/AT00L/DOM-Styler-Custom-CSS-Injector',
-    visual: 'injector',
-  },
   {
     id: 'url-shortener',
     name: 'URL Shortener',
@@ -127,5 +201,20 @@ export const projects = [
     tags: ['React 19', 'Vite', 'Motion', 'Lenis'],
     repo: 'https://github.com/AT00L/Portfolio',
     visual: 'portfolio',
+    madeWithClaude: true,
+  },
+  {
+    id: 'css-injector',
+    name: 'Custom CSS Injector',
+    kind: 'Chrome Extension',
+    blurb:
+      'Pick any element on any site, write CSS for it, and have it reapplied on every visit — even after the site renames its ids and classes. Ranked selectors plus an element fingerprint re-find the node; a DevTools sidebar pane gives exact control.',
+    tags: ['Manifest V3', 'JavaScript', 'DevTools API', 'Zero dependencies'],
+    repo: 'https://github.com/AT00L/DOM-Styler-Custom-CSS-Injector',
+    live: 'https://chromewebstore.google.com/detail/custom-css-injector/aebiehgbcchamlofdpcmdlfohffohghn',
+    liveLabel: 'Chrome Web Store',
+    liveCursor: 'Install',
+    visual: 'injector',
+    madeWithClaude: true,
   },
 ]

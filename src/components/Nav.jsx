@@ -125,9 +125,14 @@ export default function Nav({ lenis }) {
               ))}
             </nav>
             <div className="menu__foot">
-              <a href={profile.github} target="_blank" rel="noreferrer">
-                github.com/{profile.githubHandle} ↗
-              </a>
+              <span className="menu__social">
+                <a href={profile.github} target="_blank" rel="noreferrer">
+                  GitHub ↗
+                </a>
+                <a href={profile.leetcode} target="_blank" rel="noreferrer">
+                  LeetCode ↗
+                </a>
+              </span>
               <Clock />
             </div>
           </motion.div>

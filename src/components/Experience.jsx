@@ -54,11 +54,18 @@ export default function Experience() {
                   </motion.li>
                 ))}
               </ul>
-              <ul className="tags">
-                {job.tags.map((t) => (
-                  <li key={t}>{t}</li>
+              <div className="job__stack">
+                {job.stack.map((g) => (
+                  <div key={g.label} className="job__group">
+                    <p className="job__group-label">{g.label}</p>
+                    <ul className="tags">
+                      {g.items.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </motion.li>
           ))}
         </ol>

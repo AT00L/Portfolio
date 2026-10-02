@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef } from 'react'
-import { projects } from '../data'
+import { claudeCredit, projects } from '../data'
 import useMediaQuery from '../useMediaQuery'
-import { ArrowIcon, GitHubIcon } from './Icons'
+import { ArrowIcon, GitHubIcon, SparkIcon } from './Icons'
 import ProjectVisual from './ProjectVisual'
 import RollText from './RollText'
 import SectionHead from './SectionHead'
@@ -91,11 +91,22 @@ function Card({ project: p, index, total, progress, stacked }) {
                 rel="noreferrer"
                 className="btn btn--sm btn--accent hover-roll"
               >
-                <RollText text="Live site" />
+                <RollText text={p.liveLabel ?? 'Live site'} />
                 <ArrowIcon />
               </a>
             )}
           </div>
+          {p.madeWithClaude && (
+            <p className="credit">
+              <span className="credit__icon" aria-hidden="true">
+                <SparkIcon />
+              </span>
+              <span>
+                <span className="credit__label">{claudeCredit.label}</span>
+                <span className="credit__note">{claudeCredit.note}</span>
+              </span>
+            </p>
+          )}
         </div>
 
         <a
@@ -105,7 +116,7 @@ function Card({ project: p, index, total, progress, stacked }) {
           rel="noreferrer"
           tabIndex={-1}
           aria-hidden="true"
-          data-cursor={p.live ? 'Visit' : 'Code'}
+          data-cursor={p.live ? (p.liveCursor ?? 'Visit') : 'Code'}
         >
           <ProjectVisual kind={p.visual} />
         </a>
