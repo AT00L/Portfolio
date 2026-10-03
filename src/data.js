@@ -5,7 +5,13 @@ export const profile = {
   first: 'Atul',
   role: 'SDE-2',
   // Typed out one after another in the hero.
-  roles: ['SDE-2 at CUBE.', 'React Native developer.', 'Full-stack engineer.', 'I build things that ship.'],
+  roles: [
+    'SDE-2 at CUBE.',
+    'MERN stack developer.',
+    'React Native developer.',
+    'Full-stack engineer.',
+    'I build things that ship.',
+  ],
   company: 'CUBE',
   companyUrl: 'https://cube.ms',
   years: 4,

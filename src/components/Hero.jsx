@@ -123,7 +123,7 @@ export default function Hero({ ready }) {
               initial="hidden"
               animate={state}
             >
-              A software developer with {profile.years}+ years of building production software at{' '}
+              A MERN stack developer with {profile.years}+ years of building production software at{' '}
               {profile.company}. I build web apps in React, mobile apps in React Native, and the APIs
               and tooling behind them.
             </motion.p>
