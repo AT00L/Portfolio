@@ -21,25 +21,28 @@ export default function Preloader({ onDone }) {
 
   return (
     <motion.div
-      className="loader"
+      className="fixed inset-0 z-200 flex flex-col justify-between bg-accent p-(--gutter) text-ink"
       exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 1, ease: curtain } }}
       initial={{ clipPath: 'inset(0 0 0% 0)' }}
     >
       <motion.div
-        className="loader__name"
+        className="text-[clamp(1.1rem,2.2vw,1.6rem)] font-semibold tracking-[-0.02em]"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -40, opacity: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         {profile.name}
-        <em> — building</em>
+        <em className="pr-[0.05em] font-serif font-normal tracking-[-0.02em] italic"> — building</em>
       </motion.div>
-      <div className="loader__count" ref={countRef}>
+      <div
+        className="self-end text-[clamp(6rem,24vw,22rem)] leading-[0.8] font-semibold tracking-[-0.06em] tabular-nums"
+        ref={countRef}
+      >
         000
       </div>
       <motion.div
-        className="loader__bar"
+        className="absolute bottom-0 left-0 h-1 w-full origin-left bg-ink"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}

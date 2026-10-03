@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { profile } from '../data'
 import { ease, fadeUp, reveal } from '../motion'
+import { btn, btnGhost, btnSm, emphasis, eyebrow, mask, titleMask } from '../ui'
 import Clock from './Clock'
 import { ArrowIcon, CodeIcon, GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
@@ -15,44 +16,50 @@ const letter = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="contact">
-      <div className="contact__glow" aria-hidden="true" />
+    <section
+      id="contact"
+      className="relative isolate overflow-hidden border-t border-line pt-[clamp(80px,10vw,150px)]"
+    >
+      <div
+        className="pointer-events-none absolute top-[35%] left-1/2 -z-1 aspect-square w-[min(1000px,140vw)] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,var(--accent-glow),transparent_60%)]"
+        aria-hidden="true"
+      />
       <div className="wrap">
         <motion.div initial="hidden" whileInView="show" viewport={inView}>
-          <motion.p className="eyebrow" variants={fadeUp}>
-            <span>(05)</span> Contact
+          <motion.p className={eyebrow} variants={fadeUp}>
+            <span className="text-accent-text">(05)</span> Contact
           </motion.p>
-          <h2 className="contact__title">
-            <span className="mask">
-              <motion.span variants={reveal} custom={0}>
+          <h2 className="mt-6 text-[clamp(3rem,10.5vw,10.5rem)] leading-[0.9] font-semibold tracking-[-0.055em]">
+            <span className={titleMask}>
+              <motion.span className="block" variants={reveal} custom={0}>
                 Got an idea?
               </motion.span>
             </span>
-            <span className="mask">
-              <motion.span variants={reveal} custom={1}>
-                Let’s <em>build</em> it.
+            <span className={titleMask}>
+              <motion.span className="block" variants={reveal} custom={1}>
+                Let’s <em className={emphasis}>build</em> it.
               </motion.span>
             </span>
           </h2>
         </motion.div>
 
-        <div className="contact__row">
+        <div className="mt-[clamp(40px,6vw,72px)] flex items-center justify-between gap-10 max-md:flex-col max-md:items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={inView}
             transition={{ duration: 1, ease, delay: 0.2 }}
           >
-            <p>
+            <p className="max-w-[40ch] text-[clamp(1.05rem,1.35vw,1.22rem)] text-fg-2">
               Always happy to talk shop — interesting problems, side projects, or just good
               engineering. My code lives on GitHub, and my problem-solving on LeetCode.
             </p>
-            <div className="contact__links">
+            <div className="mt-[26px] flex flex-wrap gap-2.5">
               <a
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn--sm hover-roll"
+                className={`${btn} ${btnSm} ${btnGhost}`}
               >
                 <GitHubIcon />
                 <RollText text={`@${profile.githubHandle}`} />
@@ -61,7 +68,7 @@ export default function Contact() {
                 href={profile.leetcode}
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn--sm hover-roll"
+                className={`${btn} ${btnSm} ${btnGhost}`}
               >
                 <CodeIcon />
                 <RollText text={`LeetCode · ${profile.leetcodeHandle}`} />
@@ -80,11 +87,13 @@ export default function Contact() {
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
-                className="orb"
+                className="group/link flex aspect-square w-[clamp(190px,18vw,250px)] flex-col items-center justify-center gap-2.5 rounded-full bg-accent text-center text-ink [transition:scale_0.6s_var(--ease),background-color_0.4s] hover:scale-[1.06] hover:bg-fg hover:text-page"
                 data-cursor="Say hi"
               >
                 <GitHubIcon size={30} />
-                <span>github.com/{profile.githubHandle}</span>
+                <span className="font-mono text-[13px] leading-[normal] font-medium">
+                  github.com/{profile.githubHandle}
+                </span>
                 <ArrowIcon size={22} />
               </a>
             </Magnetic>
@@ -92,29 +101,29 @@ export default function Contact() {
         </div>
       </div>
 
-      <footer className="footer">
+      <footer className="mt-[clamp(80px,12vw,160px)]">
         <motion.p
-          className="footer__name"
+          className="flex justify-center px-(--gutter) text-[clamp(3rem,15vw,17rem)] leading-[0.82] font-bold tracking-[-0.065em] whitespace-nowrap [mask-image:linear-gradient(to_bottom,#000_35%,rgba(0,0,0,0.15)_100%)]"
           aria-hidden="true"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '0px 0px -5% 0px' }}
         >
           {[...profile.name].map((ch, i) => (
-            <span className="mask" key={i}>
-              <motion.span variants={letter} custom={i}>
+            <span className={`${mask} pb-[0.04em]`} key={i}>
+              <motion.span className="block" variants={letter} custom={i}>
                 {ch === ' ' ? '\u00A0' : ch}
               </motion.span>
             </span>
           ))}
         </motion.p>
-        <div className="footer__bar wrap">
+        <div className="wrap mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-[26px] pb-[30px] font-mono text-[12px] leading-[normal] tracking-[0.06em] text-muted uppercase">
           <span>
             © {new Date().getFullYear()} {profile.name}
           </span>
-          <span className="footer__built">Built with React, Motion &amp; Lenis</span>
+          <span className="max-sm:hidden">Built with React, Motion, Lenis &amp; Tailwind</span>
           <Clock />
-          <a href="#top" className="hover-roll footer__top">
+          <a href="#top" className="group/link inline-flex gap-1.5 text-fg">
             <RollText text="Back to top" /> ↑
           </a>
         </div>

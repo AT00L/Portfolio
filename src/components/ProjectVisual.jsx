@@ -1,5 +1,21 @@
 import { useAnimationFrame, useInView } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
+import { dot } from '../ui'
+
+// Syntax colours for the little code snippets.
+const code = {
+  sel: 'text-[#ff9ecb]',
+  prop: 'text-[#8ec5ff]',
+  val: 'text-accent',
+  kw: 'text-[#c792ea]',
+  fn: 'text-[#82aaff]',
+  dir: 'text-[#8ec5ff]',
+  dim: 'text-muted',
+}
+
+const column = 'flex w-[min(100%,460px)] flex-col gap-3.5'
+const darkWell = 'rounded-[14px] border border-line-2 bg-[#0e0e10]'
+const greyWell = 'rounded-[14px] border border-line-2 bg-[#1a1a1e]'
 
 // Small, code-drawn previews of each project. Purely decorative.
 export default function ProjectVisual({ kind }) {
@@ -7,54 +23,69 @@ export default function ProjectVisual({ kind }) {
   const inView = useInView(ref, { margin: '0px 0px -10% 0px' })
   const View = views[kind]
   return (
-    <div className={`viz viz--${kind} ${inView ? 'is-live' : ''}`} ref={ref}>
+    <div
+      className="grid size-full grid-cols-[minmax(0,1fr)] place-items-center p-[clamp(18px,3vw,36px)] transition-transform duration-[900ms] ease-smooth group-hover/card:scale-[1.03]"
+      ref={ref}
+    >
       <View live={inView} />
     </div>
   )
 }
 
+const skeleton = 'rounded-md bg-[#2a2a2f]'
+const windowDot = 'size-[9px] rounded-full bg-[#3a3a40]'
+
 function Injector() {
   return (
-    <div className="v-browser">
-      <div className="v-bar">
-        <i />
-        <i />
-        <i />
-        <span className="v-url">shop.example.com</span>
+    <div className="relative mb-[14%] ml-[8%] w-[min(100%,440px)] rounded-[14px] border border-line-2 bg-[#1c1c20] shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)]">
+      <div className="flex h-[34px] items-center gap-1.5 border-b border-line px-3">
+        <i className={windowDot} />
+        <i className={windowDot} />
+        <i className={windowDot} />
+        <span className="ml-2.5 flex-1 rounded-md bg-[#121215] px-2.5 font-mono text-[10.5px] leading-[20px] text-muted">
+          shop.example.com
+        </span>
       </div>
-      <div className="v-page">
-        <div className="sk sk--nav" />
-        <div className="v-product">
-          <div className="sk sk--img" />
-          <div className="v-col">
-            <div className="sk sk--h" />
-            <div className="sk sk--p" />
-            <div className="sk sk--p sk--short" />
-            <div className="v-target">
+      <div className="flex flex-col gap-3.5 px-4 pt-4 pb-[22px]">
+        <div className={`${skeleton} h-3 w-[55%]`} />
+        <div className="grid grid-cols-[1fr_1.15fr] gap-3.5">
+          <div className="aspect-square rounded-[10px] bg-[linear-gradient(135deg,#2e2e35,#222226)]" />
+          <div className="flex flex-col gap-2">
+            <div className={`${skeleton} h-[15px] w-[85%]`} />
+            <div className={`${skeleton} h-2`} />
+            <div className={`${skeleton} h-2 w-[60%]`} />
+            <div className="relative mt-auto grid h-[34px] animate-restyle place-items-center rounded-lg bg-[#33333a] font-sans text-[12px] leading-[normal] font-semibold text-[#bdbdc2] outline-[1.5px] outline-offset-[3px] outline-accent outline-dashed">
               Add to cart
-              <span className="v-target__tag">button#add-to-cart · 148×44</span>
+              <span className="absolute -top-[27px] -left-1 max-w-[calc(100%_+_8px)] overflow-hidden rounded-[4px] bg-accent px-1.5 py-1 font-mono text-[9.5px] leading-none font-medium text-ellipsis whitespace-nowrap text-ink">
+                button#add-to-cart · 148×44
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <div className="v-panel">
-        <p className="v-panel__title">
-          <span className="dot" /> Custom CSS
+      <div className="absolute -bottom-[18%] -left-[10%] w-1/2 min-w-[190px] rounded-xl border border-line-2 bg-[#141417] p-3.5 font-mono text-[11px] leading-[1.65] shadow-[0_24px_50px_-10px_rgba(0,0,0,0.85)]">
+        <p className="mb-2 flex items-center gap-2 font-sans text-[10.5px] leading-[normal] font-semibold tracking-[0.08em] uppercase">
+          <span className={`${dot} size-1.5`} /> Custom CSS
         </p>
-        <pre>
-          <span className="c-sel">&amp;</span> {'{'}
+        <pre className="[font:inherit] text-fg-2">
+          <span className={code.sel}>&amp;</span> {'{'}
           {'\n  '}
-          <span className="c-prop">background</span>: <span className="c-val">#d4ff3a</span>;
+          <span className={code.prop}>background</span>: <span className={code.val}>#d4ff3a</span>;
           {'\n  '}
-          <span className="c-prop">border-radius</span>: <span className="c-val">999px</span>;
+          <span className={code.prop}>border-radius</span>: <span className={code.val}>999px</span>;
           {'\n'}
           {'}'}
         </pre>
-        <span className="v-panel__btn">Save rule ⌘↵</span>
+        <span className="mt-2.5 inline-block rounded-md bg-fg px-2.5 py-[5px] font-sans text-[10px] leading-[normal] font-semibold text-page">
+          Save rule ⌘↵
+        </span>
       </div>
     </div>
   )
 }
+
+const cell = '[&>span]:overflow-hidden [&>span]:text-ellipsis [&>span]:whitespace-nowrap [&>span:last-child]:text-right [&>span:last-child]:tabular-nums'
+const row = `grid grid-cols-[1fr_1.35fr_0.55fr] gap-2.5 px-4 py-3 ${cell}`
 
 function Shortener({ live }) {
   const [clicks, setClicks] = useState(128)
@@ -66,33 +97,35 @@ function Shortener({ live }) {
   }, [live])
 
   return (
-    <div className="v-short">
-      <div className="v-term">
+    <div className={column}>
+      <div
+        className={`${darkWell} overflow-hidden px-[18px] py-4 font-mono text-[11.5px] leading-[1.75] whitespace-nowrap max-sm:text-[10.5px]`}
+      >
         <p>
-          <b>$</b> curl -sI urlshortneratul.is-a.dev/PPBqWA9
+          <b className="font-medium text-accent">$</b> curl -sI localhost:8000/PPBqWA9
         </p>
-        <p className="v-ok">HTTP/1.1 302 Found</p>
-        <p className="v-dim">location: https://github.com/AT00L</p>
+        <p className="text-[#7ee787]">HTTP/1.1 302 Found</p>
+        <p className={code.dim}>location: https://github.com/AT00L</p>
       </div>
-      <div className="v-table">
-        <div className="v-row v-row--head">
+      <div className={`${greyWell} overflow-hidden font-mono text-[12px] leading-[normal]`}>
+        <div className={`${row} text-[10.5px] tracking-[0.08em] text-muted uppercase`}>
           <span>Short</span>
           <span>Destination</span>
           <span>Clicks</span>
         </div>
-        <div className="v-row v-row--hot">
-          <span>/PPBqWA9</span>
+        <div className={`${row} border-t border-line bg-[rgba(212,255,58,0.06)] text-fg`}>
+          <span className="text-accent">/PPBqWA9</span>
           <span>github.com/AT00L</span>
-          <span key={clicks} className="v-bump">
+          <span key={clicks} className="animate-bump">
             {clicks}
           </span>
         </div>
-        <div className="v-row">
+        <div className={`${row} border-t border-line text-fg-2`}>
           <span>/x7Kp2-q</span>
           <span>linkedin.com/…</span>
           <span>64</span>
         </div>
-        <div className="v-row">
+        <div className={`${row} border-t border-line text-fg-2`}>
           <span>/Qm_r81Z</span>
           <span>docs.google.com/…</span>
           <span>31</span>
@@ -102,35 +135,45 @@ function Shortener({ live }) {
   )
 }
 
+const node = 'shrink-0 rounded-lg border px-3 py-2 font-mono text-[11.5px] leading-[normal] font-medium bg-[#232328]'
+const wire = 'relative mx-2 h-px min-w-6 flex-1 bg-line-2'
+// A dot that travels along a wire; the second wire starts half a cycle later.
+const packet =
+  'absolute top-[-2.5px] right-1.5 left-0 h-1.5 animate-packet before:absolute before:top-0 before:left-0 before:size-1.5 before:rounded-full before:bg-accent before:shadow-[0_0_10px_var(--accent)]'
+
 function Monorepo() {
   return (
-    <div className="v-mono">
-      <pre className="v-tree">
-        <span className="c-dir">yourlabtest/</span>
+    <div className={column}>
+      <pre
+        className={`${darkWell} overflow-hidden px-5 py-[18px] font-mono text-[12px] leading-[1.85] text-fg-2 max-sm:text-[10.5px]`}
+      >
+        <span className={code.dir}>yourlabtest/</span>
         {'\n├── '}
-        <span className="c-dir">packages/</span>
+        <span className={code.dir}>packages/</span>
         {'\n│   ├── '}
-        <span className="c-dir">web/</span>
+        <span className={code.dir}>web/</span>
         {'      '}
-        <span className="v-dim">React · MUI · Tailwind</span>
+        <span className={code.dim}>React · MUI · Tailwind</span>
         {'\n│   └── '}
-        <span className="c-dir">server/</span>
+        <span className={code.dir}>server/</span>
         {'   '}
-        <span className="v-dim">Express 5 · MongoDB</span>
+        <span className={code.dim}>Express 5 · MongoDB</span>
         {'\n└── package.json  '}
-        <span className="v-dim">workspaces</span>
+        <span className={code.dim}>workspaces</span>
       </pre>
-      <div className="v-flow">
-        <span className="v-node">web</span>
-        <span className="v-wire">
-          <em>GET /product</em>
-          <i />
+      <div className={`${greyWell} flex items-center px-4 pt-[30px] pb-5`}>
+        <span className={`${node} border-line-2`}>web</span>
+        <span className={wire}>
+          <em className="absolute bottom-[9px] left-1/2 -translate-x-1/2 font-mono text-[9.5px] leading-[normal] font-normal whitespace-nowrap text-muted not-italic">
+            GET /product
+          </em>
+          <i className={packet} />
         </span>
-        <span className="v-node">server</span>
-        <span className="v-wire">
-          <i />
+        <span className={`${node} border-line-2`}>server</span>
+        <span className={wire}>
+          <i className={`${packet} [animation-delay:1.2s]`} />
         </span>
-        <span className="v-node v-node--db">MongoDB</span>
+        <span className={`${node} border-[rgba(126,231,135,0.4)] text-[#7ee787]`}>MongoDB</span>
       </div>
     </div>
   )
@@ -161,23 +204,33 @@ function Portfolio({ live }) {
   const peak = Math.max(60, ...bars)
 
   return (
-    <div className="v-fps">
-      <div className="v-fps__read">
-        <span className="v-fps__num">{fps}</span>
-        <span className="v-fps__unit">
+    <div className={column}>
+      <div className="flex items-end gap-3.5">
+        <span className="text-[clamp(4.5rem,8vw,7rem)] leading-[0.8] font-semibold tracking-[-0.06em] text-accent tabular-nums">
+          {fps}
+        </span>
+        <span className="flex flex-col gap-1 pb-1 text-[20px] font-medium">
           fps
-          <small>measured live, right now</small>
+          <small className="font-mono text-[11px] leading-[normal] font-normal text-muted">
+            measured live, right now
+          </small>
         </span>
       </div>
-      <div className="v-fps__bars" aria-hidden="true">
+      <div className={`${darkWell} flex h-24 items-stretch gap-1 p-3.5`} aria-hidden="true">
         {bars.map((b, i) => (
-          <i key={i} style={{ transform: `scaleY(${b / peak})` }} />
+          <i
+            key={i}
+            className="flex-1 origin-bottom rounded-[2px] bg-[linear-gradient(to_top,rgba(212,255,58,0.2),var(--accent))] transition-transform duration-250 ease-linear"
+            style={{ transform: `scaleY(${b / peak})` }}
+          />
         ))}
       </div>
-      <pre className="v-code">
-        <span className="c-kw">const</span> lenis = <span className="c-kw">new</span>{' '}
-        <span className="c-fn">Lenis</span>({'{ '}
-        <span className="c-prop">autoRaf</span>: <span className="c-val">true</span>
+      <pre
+        className={`${greyWell} overflow-hidden px-4 py-3.5 font-mono text-[12px] leading-[normal] whitespace-nowrap text-fg-2 max-sm:text-[10.5px]`}
+      >
+        <span className={code.kw}>const</span> lenis = <span className={code.kw}>new</span>{' '}
+        <span className={code.fn}>Lenis</span>({'{ '}
+        <span className={code.prop}>autoRaf</span>: <span className={code.val}>true</span>
         {' })'}
       </pre>
     </div>

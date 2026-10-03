@@ -18,7 +18,7 @@ const wrap = (min, max, v) => {
 }
 
 // An endless ticker that speeds up — and flips direction — with scroll velocity.
-function Track({ items, speed, className }) {
+function Track({ items, speed, className, starClass }) {
   const reduce = useReducedMotion()
   const baseX = useMotionValue(0)
   const { scrollY } = useScroll()
@@ -39,14 +39,23 @@ function Track({ items, speed, className }) {
   })
 
   return (
-    <div className={`marquee__band ${className}`}>
-      <motion.div className="marquee__track" style={{ x, skewX: reduce ? 0 : skew }}>
+    <div className={`-ml-[6%] w-[112%] overflow-hidden py-[18px] ${className}`}>
+      <motion.div className="flex w-max will-change-transform" style={{ x, skewX: reduce ? 0 : skew }}>
         {Array.from({ length: COPIES }, (_, c) => (
-          <span key={c} className="marquee__group" aria-hidden={c > 0}>
+          <span key={c} className="flex shrink-0" aria-hidden={c > 0}>
             {items.map((t) => (
-              <span key={t} className="marquee__item">
+              <span
+                key={t}
+                className="inline-flex items-center gap-7 pr-7 text-[clamp(1.6rem,3.4vw,3rem)] leading-[1.1] font-semibold tracking-[-0.035em] whitespace-nowrap"
+              >
                 {t}
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  aria-hidden="true"
+                  className={`shrink-0 ${starClass}`}
+                >
                   <path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z" />
                 </svg>
               </span>
@@ -61,9 +70,19 @@ function Track({ items, speed, className }) {
 export default function Marquee() {
   const reversed = [...stack].reverse()
   return (
-    <section className="marquee" aria-label="Tech I work with">
-      <Track items={stack} speed={-2.2} className="marquee__band--accent" />
-      <Track items={reversed} speed={1.6} className="marquee__band--ghost" />
+    <section className="relative overflow-hidden py-[clamp(56px,8vw,110px)]" aria-label="Tech I work with">
+      <Track
+        items={stack}
+        speed={-2.2}
+        className="relative z-2 rotate-[-2.5deg] bg-accent text-ink"
+        starClass="fill-current"
+      />
+      <Track
+        items={reversed}
+        speed={1.6}
+        className="-mt-[46px] rotate-2 border-y border-line bg-sunken text-fg-2 max-md:-mt-[30px]"
+        starClass="fill-accent-text"
+      />
     </section>
   )
 }

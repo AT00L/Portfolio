@@ -26,7 +26,7 @@ export default function Magnetic({ children, strength = 0.35, className = '' }) 
   return (
     <motion.div
       ref={ref}
-      className={`magnetic ${className}`}
+      className={`inline-block ${className}`}
       style={{ x: sx, y: sy }}
       onPointerMove={onMove}
       onPointerLeave={reset}

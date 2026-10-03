@@ -119,6 +119,7 @@ const glyphs = {
     </>
   ),
   chart: <path d="M5 20v-8M11 20V5M17 20v-11M3 20h18" />,
+  shield: <path d="M12 3 19.5 6v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6L12 3zM8.8 12.2l2.3 2.3 4.2-4.6" />,
 }
 
 const glyphColors = { aws: '#FF9900' }
@@ -147,14 +148,18 @@ export default function SkillChip({ name, logo }) {
 
   return (
     <motion.li
-      className="chip"
+      className="group/chip inline-flex items-center gap-2 rounded-full border border-line-2 bg-chip py-[7px] pr-3 pl-2.5 text-[13.5px] font-medium text-fg [transition:border-color_0.35s_var(--ease),translate_0.35s_var(--ease)] hover:-translate-y-0.5 hover:border-[color-mix(in_srgb,var(--brand,var(--accent-text))_60%,transparent)]"
       data-tone={tone}
       style={color ? { '--brand': color } : undefined}
       variants={chipVariants}
     >
-      <span className="chip__logo" aria-hidden="true">
+      {/* Near-black marks need the text colour on dark; very pale ones get darker on light. */}
+      <span
+        className="grid place-items-center text-[color:var(--brand,var(--accent-text))] dark:group-data-[tone=dark]/chip:text-fg light:group-data-[tone=light]/chip:text-[color-mix(in_srgb,var(--brand)_62%,#000)]"
+        aria-hidden="true"
+      >
         {brand ? (
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" className="shrink-0">
             <path d={brand.path} />
           </svg>
         ) : (
@@ -167,6 +172,7 @@ export default function SkillChip({ name, logo }) {
             strokeWidth="1.8"
             strokeLinecap="round"
             strokeLinejoin="round"
+            className="shrink-0"
           >
             {glyphs[logo]}
           </svg>

@@ -9,6 +9,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data'
 import { ease } from '../motion'
+import { btn, btnAccent, btnGhost, btnLg, dot, emphasis, titleMask } from '../ui'
 import { ArrowIcon, CodeIcon, GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
@@ -46,39 +47,63 @@ export default function Hero({ ready }) {
   const state = ready ? 'show' : 'hidden'
 
   return (
-    <section id="top" className="hero" ref={ref} onPointerMove={onMove}>
-      <div className="hero__grid" aria-hidden="true" />
-      <motion.div className="hero__glow" style={{ x: sgx, y: sgy }} aria-hidden="true" />
+    <section
+      id="top"
+      className="relative isolate flex min-h-svh flex-col justify-end overflow-hidden pt-[calc(var(--nav-h)_+_40px)] short:pt-[calc(var(--nav-h)_+_20px)]"
+      ref={ref}
+      onPointerMove={onMove}
+    >
+      <div
+        className="absolute inset-0 -z-2 bg-[linear-gradient(var(--line)_1px,transparent_1px),linear-gradient(90deg,var(--line)_1px,transparent_1px)] bg-[length:72px_72px] bg-top [mask-image:radial-gradient(ellipse_80%_70%_at_50%_35%,#000_25%,transparent_75%)]"
+        aria-hidden="true"
+      />
+      <motion.div
+        className="pointer-events-none absolute top-0 left-0 -z-1 -mt-[600px] -ml-[600px] size-[1200px] bg-[radial-gradient(circle,var(--glow),transparent_50%)] will-change-transform"
+        style={{ x: sgx, y: sgy }}
+        aria-hidden="true"
+      />
 
-      <motion.div className="hero__content wrap" style={{ y, opacity, scale }}>
-        <motion.p className="pill" variants={fade} custom={-3} initial="hidden" animate={state}>
-          <span className="dot" aria-hidden="true" />
+      <motion.div className="wrap relative origin-bottom" style={{ y, opacity, scale }}>
+        <motion.p
+          className="inline-flex items-center gap-2.5 rounded-full border border-line-2 bg-chip py-2 pr-4 pl-3 text-[14px] text-fg-2 backdrop-blur-[8px]"
+          variants={fade}
+          custom={-3}
+          initial="hidden"
+          animate={state}
+        >
+          <span className={`${dot} size-2`} aria-hidden="true" />
           {profile.role} at{' '}
-          <a href={profile.companyUrl} target="_blank" rel="noreferrer">
+          <a
+            href={profile.companyUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="text-fg underline decoration-line-2 underline-offset-[3px] transition-[text-decoration-color] duration-300 hover:decoration-accent"
+          >
             {profile.company}
           </a>
-          <span className="pill__sep" aria-hidden="true" />
+          <span className="h-3.5 w-px bg-line-2" aria-hidden="true" />
           {profile.years}+ yrs
         </motion.p>
 
-        <h1 className="hero__title">
+        <h1 className="mt-[26px] text-[34px] leading-none font-semibold tracking-[-0.05em] short:mt-5">
           <span className="sr-only">
             Hello, I’m {profile.name} — {profile.roles.join(' ')}
           </span>
-          <span className="mask" aria-hidden="true">
+          <span className={titleMask} aria-hidden="true">
             <motion.span
-              className="hero__hello"
+              className="block text-[clamp(1.9rem,4.4vw,4.6rem)] font-medium tracking-[-0.04em] text-fg-2 max-sm:text-[8.4vw]"
               variants={rise}
               custom={0}
               initial="hidden"
               animate={state}
             >
-              Hello, I’m <em>{profile.first}</em>
+              Hello, I’m <em className={`${emphasis} text-[1.08em]`}>{profile.first}</em>
             </motion.span>
           </span>
-          <span className="mask" aria-hidden="true">
+          {/* Sized so the longest role fits on one line; the line keeps its height while typing. */}
+          <span className={titleMask} aria-hidden="true">
             <motion.span
-              className="hero__role"
+              className="block min-h-[1em] text-[clamp(2.4rem,7.2vw,7.6rem)] whitespace-nowrap short:text-[min(7.2vw,13svh)] max-sm:min-h-[2em] max-sm:text-[11.6vw] max-sm:whitespace-normal"
               variants={rise}
               custom={1}
               initial="hidden"
@@ -89,22 +114,28 @@ export default function Hero({ ready }) {
           </span>
         </h1>
 
-        <div className="hero__bottom">
-          <div className="hero__intro">
-            <motion.p variants={fade} custom={0} initial="hidden" animate={state}>
+        <div className="mt-[clamp(36px,5vw,64px)] grid grid-cols-[1.1fr_1fr] items-end gap-[clamp(28px,5vw,80px)] short:mt-7 max-lg:grid-cols-1 max-lg:items-start">
+          <div>
+            <motion.p
+              className="max-w-[44ch] text-[clamp(1.05rem,1.35vw,1.22rem)] leading-[1.55] text-fg-2"
+              variants={fade}
+              custom={0}
+              initial="hidden"
+              animate={state}
+            >
               A software developer with {profile.years}+ years of building production software at{' '}
               {profile.company}. I build web apps in React, mobile apps in React Native, and the APIs
               and tooling behind them.
             </motion.p>
             <motion.div
-              className="hero__cta"
+              className="mt-[30px] flex flex-wrap gap-3"
               variants={fade}
               custom={1}
               initial="hidden"
               animate={state}
             >
               <Magnetic>
-                <a href="#work" className="btn btn--accent hover-roll">
+                <a href="#work" className={`${btn} ${btnLg} ${btnAccent}`}>
                   <RollText text="See my work" />
                   <ArrowIcon down />
                 </a>
@@ -114,7 +145,7 @@ export default function Hero({ ready }) {
                   href={profile.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn hover-roll"
+                  className={`${btn} ${btnLg} ${btnGhost}`}
                 >
                   <GitHubIcon />
                   <RollText text={`@${profile.githubHandle}`} />
@@ -125,7 +156,7 @@ export default function Hero({ ready }) {
                   href={profile.leetcode}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn hover-roll"
+                  className={`${btn} ${btnLg} ${btnGhost}`}
                 >
                   <CodeIcon />
                   <RollText text="LeetCode" />
@@ -134,26 +165,32 @@ export default function Hero({ ready }) {
             </motion.div>
           </div>
 
-          <motion.div className="hero__term" variants={fade} custom={2} initial="hidden" animate={state}>
+          <motion.div
+            className="w-full max-w-[540px] justify-self-end max-lg:max-w-none max-lg:justify-self-stretch"
+            variants={fade}
+            custom={2}
+            initial="hidden"
+            animate={state}
+          >
             <Terminal start={ready} delay={2200} />
           </motion.div>
         </div>
       </motion.div>
 
       <motion.div
-        className="hero__foot wrap"
+        className="wrap mt-[clamp(36px,5vw,56px)] flex items-center justify-between border-t border-line pt-[22px] pb-6 font-mono text-[12px] leading-[normal] tracking-[0.08em] text-muted uppercase short:mt-7 short:pt-4 short:pb-[18px]"
         variants={fade}
         custom={4}
         initial="hidden"
         animate={state}
       >
-        <span className="scroll-hint">
-          <span className="scroll-hint__track" aria-hidden="true">
-            <span />
+        <span className="inline-flex items-center gap-3">
+          <span className="relative h-7 w-px overflow-hidden bg-line-2 max-sm:hidden" aria-hidden="true">
+            <span className="absolute inset-x-0 top-0 h-[40%] animate-drip bg-mark" />
           </span>
           Scroll
         </span>
-        <span>Web · Mobile · Backend — {new Date().getFullYear()}</span>
+        <span className="max-sm:hidden">Web · Mobile · Backend — {new Date().getFullYear()}</span>
       </motion.div>
     </section>
   )
@@ -195,7 +232,7 @@ function Typewriter({ phrases, start }) {
   return (
     <>
       {text}
-      <span className="hero__caret" />
+      <span className="ml-[0.04em] inline-block h-[0.7em] w-[0.07em] animate-blink bg-mark" />
     </>
   )
 }
@@ -230,25 +267,32 @@ function Terminal({ start, delay = 0 }) {
   const shown = reduce ? script.length : line
 
   return (
-    <div className="term" role="img" aria-label="Terminal: whoami, experience and projects">
-      <div className="term__bar">
-        <i />
-        <i />
-        <i />
-        <span>atul@dev — zsh</span>
+    <div
+      className="stage overflow-hidden rounded-[18px] border border-line-2 bg-[rgba(17,17,19,0.94)] font-mono text-[13.5px] leading-[1.7] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-[12px] short:text-[12.5px] max-sm:text-[12px]"
+      role="img"
+      aria-label="Terminal: whoami, experience and projects"
+    >
+      <div className="relative flex items-center gap-[7px] border-b border-line px-4 py-3">
+        <i className="size-2.5 rounded-full bg-[#ff5f57]" />
+        <i className="size-2.5 rounded-full bg-[#febc2e]" />
+        <i className="size-2.5 rounded-full bg-[#28c840]" />
+        <span className="absolute left-1/2 -translate-x-1/2 text-[12px] text-muted">atul@dev — zsh</span>
       </div>
-      <div className="term__body" aria-hidden="true">
+      <div
+        className="min-h-[calc(13.5px*1.7*7_+_36px)] px-[18px] pt-4 pb-5 text-fg short:min-h-[calc(12.5px*1.7*7_+_36px)] max-sm:min-h-0 [&_b]:font-medium [&_b]:text-accent [&_p]:whitespace-pre-wrap"
+        aria-hidden="true"
+      >
         {script.slice(0, shown).map((s) => (
           <div key={s.cmd}>
             <p>
               <b>~ $</b> {s.cmd}
             </p>
-            <p className="term__out">{s.out}</p>
+            <p className="text-muted">{s.out}</p>
           </div>
         ))}
         <p>
           <b>~ $</b> {shown < script.length && script[shown].cmd.slice(0, chars)}
-          <span className="term__caret" />
+          <span className="ml-0.5 inline-block h-[1.15em] w-[0.6em] animate-blink-fast bg-fg align-[-0.22em]" />
         </p>
       </div>
     </div>

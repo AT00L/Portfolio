@@ -44,18 +44,28 @@ export default function Cursor() {
 
   if (!enabled) return null
 
-  const cls = [
-    'cursor',
-    state.visible && 'is-visible',
-    state.active && 'is-active',
-    state.label && 'has-label',
-  ]
-    .filter(Boolean)
-    .join(' ')
+  // A label turns the ring into a filled bubble; links and buttons grow it.
+  const look = state.label
+    ? 'size-[88px] -mt-[44px] -ml-[44px] scale-100 border-accent bg-accent'
+    : state.active
+      ? 'size-[34px] -mt-[17px] -ml-[17px] scale-[1.55] border-accent-text bg-accent-soft'
+      : `size-[34px] -mt-[17px] -ml-[17px] border-cursor ${state.visible ? 'scale-100' : 'scale-0'}`
 
   return (
-    <motion.div className={cls} style={{ x: sx, y: sy }} aria-hidden="true">
-      <span className="cursor__ring">{state.label && <span>{state.label}</span>}</span>
+    <motion.div
+      className="pointer-events-none fixed top-0 left-0 z-120"
+      style={{ x: sx, y: sy }}
+      aria-hidden="true"
+    >
+      <span
+        className={`absolute top-0 left-0 grid place-items-center rounded-full border [transition:scale_0.45s_var(--ease),width_0.45s_var(--ease),height_0.45s_var(--ease),margin_0.45s_var(--ease),background-color_0.3s,border-color_0.3s] ${look}`}
+      >
+        {state.label && (
+          <span className="font-mono text-[11px] leading-none font-medium tracking-[0.06em] text-ink uppercase">
+            {state.label}
+          </span>
+        )}
+      </span>
     </motion.div>
   )
 }

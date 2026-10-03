@@ -78,9 +78,16 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <AnimatePresence>{!ready && <Preloader key="intro" onDone={finishIntro} />}</AnimatePresence>
-      <motion.div className="progress" style={{ scaleX: progress }} aria-hidden="true" />
+      <motion.div
+        className="fixed inset-x-0 top-0 z-110 h-0.5 origin-left bg-mark"
+        style={{ scaleX: progress }}
+        aria-hidden="true"
+      />
       <Cursor />
-      <div className="grain" aria-hidden="true" />
+      <div
+        className="pointer-events-none fixed inset-0 z-100 bg-noise opacity-(--grain)"
+        aria-hidden="true"
+      />
       <Nav lenis={lenis} />
       <main>
         <Hero ready={ready} />

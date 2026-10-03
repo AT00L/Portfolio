@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react'
 
-// The theme lives on <html data-theme>. index.html sets it before first paint
-// from the saved choice; no attribute means the default light theme.
+// The theme lives on <html data-theme>. index.html sets it before first paint:
+// dark by default, light if the visitor chose it.
 const root = document.documentElement
 const colors = { light: '#f5f4ef', dark: '#0b0b0c' }
 

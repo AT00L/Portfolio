@@ -9,7 +9,7 @@ const fmt = new Intl.DateTimeFormat('en-GB', {
   hour12: false,
 })
 
-export default function Clock() {
+export default function Clock({ className = '' }) {
   const [now, setNow] = useState(() => new Date())
 
   useEffect(() => {
@@ -18,8 +18,10 @@ export default function Clock() {
   }, [])
 
   return (
-    <span className="clock">
-      {profile.tzLabel} <time>{fmt.format(now)}</time>
+    <span
+      className={`font-mono text-[12px] leading-none tracking-[0.04em] whitespace-nowrap text-muted ${className}`}
+    >
+      {profile.tzLabel} <time className="text-fg-2 tabular-nums">{fmt.format(now)}</time>
     </span>
   )
 }

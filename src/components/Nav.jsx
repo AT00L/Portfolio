@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { profile } from '../data'
+import { btn, btnGhost, btnSm, mask } from '../ui'
 import Clock from './Clock'
 import { GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
@@ -16,6 +17,7 @@ const links = [
 ]
 
 const ease = [0.76, 0, 0.24, 1]
+const burgerLine = 'absolute right-[13px] left-[13px] h-[1.5px] bg-fg transition-transform duration-500 ease-snap'
 const origin = 'at calc(100% - 40px) 36px'
 
 export default function Nav({ lenis }) {
@@ -53,35 +55,48 @@ export default function Nav({ lenis }) {
   return (
     <>
       <motion.header
-        className={`nav ${scrolled ? 'is-scrolled' : ''}`}
+        className={`fixed inset-x-0 top-0 z-80 flex h-(--nav-h) items-center border-b [transition:background-color_0.5s,border-color_0.5s,backdrop-filter_0.5s] ${
+          scrolled ? 'border-line bg-nav backdrop-blur-[16px] backdrop-saturate-[140%]' : 'border-transparent'
+        }`}
         animate={{ y: hidden && !open ? '-120%' : '0%' }}
         transition={{ duration: 0.5, ease }}
       >
-        <div className="nav__inner wrap">
-          <a href="#top" className="nav__logo hover-roll">
-            <span className="nav__mark" aria-hidden="true">
-              a<i />
+        <div className="wrap grid grid-cols-[1fr_auto_1fr] items-center gap-6 max-lg:grid-cols-[1fr_auto]">
+          <a
+            href="#top"
+            className="group/link inline-flex items-center gap-3 justify-self-start font-semibold tracking-[-0.01em]"
+          >
+            {/* A dark tile in both themes, like the favicon. */}
+            <span
+              className="relative grid size-9 place-items-center rounded-[11px] border border-white/12 bg-[#111113] pb-1 font-serif text-[24px] leading-none font-normal text-accent italic transition-transform duration-[600ms] ease-smooth group-hover/link:-rotate-12 group-hover/link:scale-[1.06]"
+              aria-hidden="true"
+            >
+              a<i className="absolute right-[7px] bottom-[9px] size-1 rounded-full bg-accent" />
             </span>
             <RollText text={profile.name} />
           </a>
 
-          <nav className="nav__links" aria-label="Primary">
+          <nav className="flex gap-[34px] text-[15px] text-fg-2 max-lg:hidden" aria-label="Primary">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="hover-roll">
+              <a
+                key={l.href}
+                href={l.href}
+                className="group/link transition-colors duration-300 hover:text-fg"
+              >
                 <RollText text={l.label} />
               </a>
             ))}
           </nav>
 
-          <div className="nav__right">
-            <Clock />
+          <div className="flex items-center gap-[18px] justify-self-end">
+            <Clock className="max-lg:hidden" />
             <ThemeToggle />
-            <Magnetic strength={0.25}>
+            <Magnetic strength={0.25} className="max-xs:hidden">
               <a
                 href={profile.github}
                 target="_blank"
                 rel="noreferrer"
-                className="btn btn--sm hover-roll"
+                className={`${btn} ${btnSm} ${btnGhost}`}
               >
                 <GitHubIcon />
                 <RollText text="GitHub" />
@@ -89,13 +104,17 @@ export default function Nav({ lenis }) {
             </Magnetic>
             <button
               type="button"
-              className={`nav__burger ${open ? 'is-open' : ''}`}
+              className="relative hidden size-11 rounded-full border border-line-2 max-lg:block"
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               onClick={() => toggle(!open)}
             >
-              <span />
-              <span />
+              <span
+                className={`${burgerLine} top-[18px] ${open ? 'translate-y-[3px] rotate-45' : ''}`}
+              />
+              <span
+                className={`${burgerLine} top-6 ${open ? '-translate-y-[3px] -rotate-45' : ''}`}
+              />
             </button>
           </div>
         </div>
@@ -104,16 +123,17 @@ export default function Nav({ lenis }) {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="menu"
+            className="fixed inset-0 z-70 flex flex-col justify-between bg-card px-(--gutter) pt-[calc(var(--nav-h)_+_32px)] pb-(--gutter)"
             initial={{ clipPath: `circle(0% ${origin})` }}
             animate={{ clipPath: `circle(150% ${origin})` }}
             exit={{ clipPath: `circle(0% ${origin})` }}
             transition={{ duration: 0.8, ease }}
           >
-            <nav className="menu__links" aria-label="Mobile">
+            <nav aria-label="Mobile">
               {links.map((l, i) => (
-                <div key={l.href} className="mask">
+                <div key={l.href} className={mask}>
                   <motion.a
+                    className="flex items-baseline gap-3.5 pt-0.5 pb-1.5 text-[clamp(2.8rem,13vw,5rem)] leading-[1.02] font-semibold tracking-[-0.045em]"
                     href={l.href}
                     onClick={() => toggle(false)}
                     initial={{ y: '110%' }}
@@ -121,14 +141,16 @@ export default function Nav({ lenis }) {
                     exit={{ y: '110%' }}
                     transition={{ duration: 0.7, ease, delay: 0.15 + i * 0.06 }}
                   >
-                    <span className="menu__num">0{i + 1}</span>
+                    <span className="font-mono text-[13px] leading-[normal] font-normal tracking-normal text-accent-text">
+                      0{i + 1}
+                    </span>
                     {l.label}
                   </motion.a>
                 </div>
               ))}
             </nav>
-            <div className="menu__foot">
-              <span className="menu__social">
+            <div className="flex items-center justify-between gap-4 border-t border-line pt-5 font-mono text-[13px] leading-[normal] text-fg-2">
+              <span className="flex gap-5">
                 <a href={profile.github} target="_blank" rel="noreferrer">
                   GitHub ↗
                 </a>
