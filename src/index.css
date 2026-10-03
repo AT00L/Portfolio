@@ -11,34 +11,39 @@
 /* Theme colours are plain variables so a theme switch is one attribute change.
    Light is the base; [data-theme='dark'] overrides it. */
 :root {
-  --bg: #f5f4ef;
+  /* Light: a sky-blue gradient page with sky accents. */
+  --bg: #eaf6fe;
   --bg-2: #ffffff;
-  --bg-3: #ebeae3;
-  --fg: #141414;
-  --fg-2: #46453f;
-  --muted: #7b7a73;
-  --line: rgba(20, 20, 20, 0.08);
-  --line-2: rgba(20, 20, 20, 0.14);
-  --accent: #d4ff3a;
-  --accent-ink: #0b0b0c;
-  --accent-text: #4d7c0f;
-  --accent-soft: rgba(163, 230, 53, 0.2);
-  --accent-line: rgba(77, 124, 15, 0.35);
-  --accent-glow: rgba(190, 242, 60, 0.32);
-  --mark: #84cc16;
-  --glow: rgba(196, 245, 70, 0.3);
-  --spot: rgba(163, 230, 53, 0.16);
-  --chip-bg: rgba(20, 20, 20, 0.025);
-  --nav-bg: rgba(245, 244, 239, 0.75);
-  --ghost: rgba(20, 20, 20, 0.07);
-  --cursor: rgba(20, 20, 20, 0.35);
-  --shade: #e7e6df;
-  --focus: #4d7c0f;
-  --grain: 0.045;
-  --card-shadow: 0 1px 2px rgba(20, 20, 20, 0.04), 0 30px 60px -36px rgba(20, 20, 20, 0.3);
-  --soft-shadow: 0 1px 2px rgba(20, 20, 20, 0.04), 0 16px 40px -28px rgba(20, 20, 20, 0.22);
-  --em-color: var(--fg);
-  --em-mark: var(--accent);
+  --bg-3: #e0f0fc;
+  --fg: #0c1a2b;
+  --fg-2: #3b4f66;
+  --muted: #5c6e86;
+  --line: rgba(12, 74, 110, 0.1);
+  --line-2: rgba(12, 74, 110, 0.17);
+  --accent: #38bdf8;
+  --accent-ink: #062a40;
+  --accent-text: #0369a1;
+  --accent-soft: rgba(14, 165, 233, 0.1);
+  --accent-line: rgba(3, 105, 161, 0.3);
+  --accent-glow: rgba(56, 189, 248, 0.16);
+  --mark: #0ea5e9;
+  --glow: rgba(56, 189, 248, 0.22);
+  --spot: rgba(14, 165, 233, 0.08);
+  --chip-bg: rgba(255, 255, 255, 0.55);
+  --nav-bg: rgba(236, 247, 255, 0.78);
+  --ghost: rgba(12, 74, 110, 0.07);
+  --cursor: rgba(12, 26, 43, 0.35);
+  --shade: #dcecf9;
+  --focus: #0284c7;
+  --grain: 0.02;
+  --card-shadow: 0 1px 2px rgba(12, 74, 110, 0.05), 0 30px 60px -36px rgba(12, 74, 110, 0.3);
+  --soft-shadow: 0 1px 2px rgba(12, 74, 110, 0.05), 0 16px 40px -28px rgba(12, 74, 110, 0.22);
+  /* Gradients: the page, filled buttons, and accent words. */
+  --page-fill: linear-gradient(165deg, #cdeafe 0%, #e4f4ff 38%, #f3faff 70%, #ffffff 100%);
+  --accent-fill: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 50%, #0ea5e9 100%);
+  --em-fill: linear-gradient(90deg, #0369a1, #0ea5e9);
+  /* The gap around the timeline dot; none on the gradient page. */
+  --ring-bg: transparent;
 
   --gutter: clamp(16px, 4vw, 56px);
   --radius: 28px;
@@ -50,32 +55,36 @@
 }
 
 [data-theme='dark'] {
-  --bg: #0b0b0c;
-  --bg-2: #111113;
-  --bg-3: #17171a;
-  --fg: #f2f1ec;
-  --fg-2: #c4c3bd;
-  --muted: #86868c;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.14);
-  --accent-text: #d4ff3a;
-  --accent-soft: rgba(212, 255, 58, 0.08);
-  --accent-line: rgba(212, 255, 58, 0.3);
-  --accent-glow: rgba(212, 255, 58, 0.1);
-  --mark: #d4ff3a;
-  --glow: rgba(212, 255, 58, 0.13);
-  --spot: rgba(212, 255, 58, 0.07);
+  --bg: #0b0f19;
+  --bg-2: #111827;
+  --bg-3: #161e2e;
+  --fg: #e5e9f0;
+  --fg-2: #a7b0c0;
+  --muted: #7d8799;
+  --line: rgba(148, 163, 184, 0.12);
+  --line-2: rgba(148, 163, 184, 0.2);
+  --accent-text: #6ea8ff;
+  --accent-soft: rgba(96, 165, 250, 0.1);
+  --accent-line: rgba(96, 165, 250, 0.3);
+  --accent-glow: rgba(59, 130, 246, 0.1);
+  --mark: #60a5fa;
+  --glow: rgba(59, 130, 246, 0.12);
+  --spot: rgba(96, 165, 250, 0.06);
   --chip-bg: rgba(255, 255, 255, 0.03);
-  --nav-bg: rgba(11, 11, 12, 0.62);
-  --ghost: rgba(255, 255, 255, 0.07);
-  --cursor: rgba(255, 255, 255, 0.45);
+  --nav-bg: rgba(11, 15, 25, 0.72);
+  --ghost: rgba(148, 163, 184, 0.08);
+  --cursor: rgba(229, 233, 240, 0.4);
   --shade: #000;
-  --focus: #d4ff3a;
-  --grain: 0.06;
-  --card-shadow: 0 -30px 60px -30px rgba(0, 0, 0, 0.7);
+  --focus: #60a5fa;
+  --grain: 0.035;
+  --card-shadow: 0 -30px 60px -30px rgba(0, 0, 0, 0.6);
   --soft-shadow: none;
-  --em-color: var(--accent);
-  --em-mark: transparent;
+  --accent: #2563eb;
+  --accent-ink: #ffffff;
+  --page-fill: none;
+  --accent-fill: linear-gradient(#2563eb, #2563eb);
+  --em-fill: linear-gradient(var(--accent-text), var(--accent-text));
+  --ring-bg: var(--bg);
 
   color-scheme: dark;
 }
@@ -180,8 +189,8 @@
     0%,
     35%,
     100% {
-      background: #33333a;
-      color: #bdbdc2;
+      background: #2a3446;
+      color: #cbd5e1;
       border-radius: 8px;
     }
     50%,
@@ -226,16 +235,16 @@
 
 /* Terminals and project previews are dark screens in both themes. */
 @utility stage {
-  --bg: #0b0b0c;
-  --bg-2: #111113;
-  --bg-3: #17171a;
-  --fg: #f2f1ec;
-  --fg-2: #c4c3bd;
-  --muted: #86868c;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.14);
-  --accent-text: #d4ff3a;
-  --mark: #d4ff3a;
+  --bg: #0b0f19;
+  --bg-2: #111827;
+  --bg-3: #161e2e;
+  --fg: #e5e9f0;
+  --fg-2: #a7b0c0;
+  --muted: #7d8799;
+  --line: rgba(148, 163, 184, 0.12);
+  --line-2: rgba(148, 163, 184, 0.2);
+  --accent-text: #6ea8ff;
+  --mark: #60a5fa;
   color: var(--fg);
 }
 

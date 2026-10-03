@@ -21,7 +21,7 @@ export default function Preloader({ onDone }) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-200 flex flex-col justify-between bg-accent p-(--gutter) text-ink"
+      className="fixed inset-0 z-200 flex flex-col justify-between bg-page p-(--gutter) text-fg"
       exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 1, ease: curtain } }}
       initial={{ clipPath: 'inset(0 0 0% 0)' }}
     >
@@ -33,16 +33,19 @@ export default function Preloader({ onDone }) {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         {profile.name}
-        <em className="pr-[0.05em] font-serif font-normal tracking-[-0.02em] italic"> — building</em>
+        <em className="pr-[0.05em] font-serif font-normal tracking-[-0.02em] text-accent-text italic">
+          {' '}
+          — building
+        </em>
       </motion.div>
       <div
-        className="self-end text-[clamp(6rem,24vw,22rem)] leading-[0.8] font-semibold tracking-[-0.06em] tabular-nums"
+        className="self-end text-[clamp(5rem,16vw,14rem)] leading-[0.8] font-semibold tracking-[-0.06em] tabular-nums"
         ref={countRef}
       >
         000
       </div>
       <motion.div
-        className="absolute bottom-0 left-0 h-1 w-full origin-left bg-ink"
+        className="absolute bottom-0 left-0 h-1 w-full origin-left bg-(image:--accent-fill)"
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}

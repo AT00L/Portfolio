@@ -29,7 +29,10 @@ export default function Experience() {
             style={{ gridRow: `1 / ${experience.length + 1}` }}
             aria-hidden="true"
           >
-            <motion.span className="absolute inset-0 origin-top bg-mark" style={{ scaleY: fill }} />
+            <motion.span
+              className="absolute inset-0 origin-top bg-(image:--accent-fill)"
+              style={{ scaleY: fill }}
+            />
           </span>
 
           {experience.map((job, i) => (
@@ -57,7 +60,7 @@ export default function Experience() {
               </motion.div>
 
               <div
-                className={`relative z-1 col-start-2 row-(--row) grid size-(--node) place-items-center rounded-full border border-line-2 bg-card font-serif text-[28px] leading-none font-normal text-accent-text italic shadow-[0_0_0_8px_var(--bg)] max-lg:col-start-1 max-lg:text-[20px] max-lg:shadow-[0_0_0_6px_var(--bg)] ${
+                className={`relative z-1 col-start-2 row-(--row) grid size-(--node) place-items-center rounded-full border border-line-2 bg-card font-serif text-[28px] leading-none font-normal text-accent-text italic shadow-[0_0_0_8px_var(--ring-bg)] max-lg:col-start-1 max-lg:text-[20px] max-lg:shadow-[0_0_0_6px_var(--ring-bg)] ${
                   job.current
                     ? 'after:absolute after:-inset-px after:animate-ring after:rounded-full after:border after:border-mark'
                     : ''

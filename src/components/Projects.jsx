@@ -175,7 +175,7 @@ function Card({ project: p, index, total, progress, stacked }) {
         </div>
 
         <a
-          className="stage relative grid min-h-0 min-w-0 grid-cols-[minmax(0,1fr)] overflow-hidden rounded-[20px] border border-line bg-[#141416] bg-[radial-gradient(circle_at_80%_0%,rgba(212,255,58,0.1),transparent_50%)] max-xl:-order-1 max-xl:h-[300px] max-sm:h-[260px]"
+          className="stage relative grid min-h-0 min-w-0 grid-cols-[minmax(0,1fr)] overflow-hidden rounded-[20px] border border-line bg-[#0f1522] bg-[radial-gradient(circle_at_80%_0%,rgba(96,165,250,0.12),transparent_50%)] max-xl:-order-1 max-xl:h-[300px] max-sm:h-[260px]"
           href={primary}
           target="_blank"
           rel="noreferrer"

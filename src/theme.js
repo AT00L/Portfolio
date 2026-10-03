@@ -3,7 +3,7 @@ import { useSyncExternalStore } from 'react'
 // The theme lives on <html data-theme>. index.html sets it before first paint:
 // dark by default, light if the visitor chose it.
 const root = document.documentElement
-const colors = { light: '#f5f4ef', dark: '#0b0b0c' }
+const colors = { light: '#dff0fd', dark: '#0b0f19' }
 
 const read = () => (root.dataset.theme === 'dark' ? 'dark' : 'light')
 

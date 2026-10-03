@@ -279,7 +279,7 @@ function Terminal({ start, delay = 0 }) {
 
   return (
     <div
-      className="stage overflow-hidden rounded-[18px] border border-line-2 bg-[rgba(17,17,19,0.94)] font-mono text-[13.5px] leading-[1.7] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-[12px] short:text-[12.5px] max-sm:text-[12px]"
+      className="stage overflow-hidden rounded-[18px] border border-line-2 bg-[rgba(15,21,34,0.94)] font-mono text-[13.5px] leading-[1.7] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.9)] backdrop-blur-[12px] short:text-[12.5px] max-sm:text-[12px]"
       role="img"
       aria-label="Terminal: whoami, experience and projects"
     >
@@ -290,7 +290,7 @@ function Terminal({ start, delay = 0 }) {
         <span className="absolute left-1/2 -translate-x-1/2 text-[12px] text-muted">atul@dev — zsh</span>
       </div>
       <div
-        className="min-h-[calc(13.5px*1.7*7_+_36px)] px-[18px] pt-4 pb-5 text-fg short:min-h-[calc(12.5px*1.7*7_+_36px)] max-sm:min-h-0 [&_b]:font-medium [&_b]:text-accent [&_p]:whitespace-pre-wrap"
+        className="min-h-[calc(13.5px*1.7*7_+_36px)] px-[18px] pt-4 pb-5 text-fg short:min-h-[calc(12.5px*1.7*7_+_36px)] max-sm:min-h-0 [&_b]:font-medium [&_b]:text-mark [&_p]:whitespace-pre-wrap"
         aria-hidden="true"
       >
         {script.slice(0, shown).map((s) => (

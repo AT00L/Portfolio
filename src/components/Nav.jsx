@@ -68,7 +68,7 @@ export default function Nav({ lenis }) {
           >
             {/* The favicon itself, so the logo and the browser tab always match. */}
             <img
-              src="/favicon.svg?v=2"
+              src="/favicon.svg?v=3"
               alt=""
               width="36"
               height="36"

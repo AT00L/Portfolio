@@ -79,10 +79,12 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <AnimatePresence>{!ready && <Preloader key="intro" onDone={finishIntro} />}</AnimatePresence>
       <motion.div
-        className="fixed inset-x-0 top-0 z-110 h-0.5 origin-left bg-mark"
+        className="fixed inset-x-0 top-0 z-110 h-0.5 origin-left bg-(image:--accent-fill)"
         style={{ scaleX: progress }}
         aria-hidden="true"
       />
+      {/* The page background: a sky gradient fixed to the window in light mode, plain in dark. */}
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-(image:--page-fill)" aria-hidden="true" />
       <Cursor />
       <div
         className="pointer-events-none fixed inset-0 z-100 bg-noise opacity-(--grain)"

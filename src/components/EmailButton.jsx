@@ -64,7 +64,7 @@ export default function EmailButton() {
         <a
           href={mailto}
           onClick={onClick}
-          className="group/link flex aspect-square w-[clamp(190px,18vw,250px)] flex-col items-center justify-center gap-2.5 rounded-full bg-accent text-center text-ink [transition:scale_0.6s_var(--ease),background-color_0.4s] hover:scale-[1.06] hover:bg-fg hover:text-page"
+          className="group/link flex aspect-square w-[clamp(190px,18vw,250px)] flex-col items-center justify-center gap-2.5 rounded-full bg-(image:--accent-fill) text-center text-ink [transition:scale_0.6s_var(--ease),background-color_0.4s] hover:scale-[1.06] hover:bg-fg hover:bg-none hover:text-page"
           data-cursor="Email me"
         >
           <MailIcon size={30} />
