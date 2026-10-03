@@ -91,6 +91,26 @@ export function SparkIcon({ size = 16, className = '' }) {
   )
 }
 
+export function MailIcon({ size = 16 }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="shrink-0"
+    >
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
+  )
+}
+
 // A briefcase, for the LinkedIn links.
 export function BriefcaseIcon({ size = 16 }) {
   return (

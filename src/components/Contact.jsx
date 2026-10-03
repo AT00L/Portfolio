@@ -3,8 +3,8 @@ import { profile } from '../data'
 import { ease, fadeUp, reveal } from '../motion'
 import { btn, btnGhost, btnSm, emphasis, eyebrow, mask, titleMask } from '../ui'
 import Clock from './Clock'
-import { ArrowIcon, BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
-import Magnetic from './Magnetic'
+import EmailButton from './EmailButton'
+import { BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
 import RollText from './RollText'
 
 const inView = { once: true, margin: '-10% 0px' }
@@ -92,21 +92,7 @@ export default function Contact() {
             viewport={inView}
             transition={{ duration: 1.1, ease, delay: 0.25 }}
           >
-            <Magnetic strength={0.45}>
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noreferrer"
-                className="group/link flex aspect-square w-[clamp(190px,18vw,250px)] flex-col items-center justify-center gap-2.5 rounded-full bg-accent text-center text-ink [transition:scale_0.6s_var(--ease),background-color_0.4s] hover:scale-[1.06] hover:bg-fg hover:text-page"
-                data-cursor="Say hi"
-              >
-                <GitHubIcon size={30} />
-                <span className="font-mono text-[13px] leading-[normal] font-medium">
-                  github.com/{profile.githubHandle}
-                </span>
-                <ArrowIcon size={22} />
-              </a>
-            </Magnetic>
+            <EmailButton />
           </motion.div>
         </div>
       </div>

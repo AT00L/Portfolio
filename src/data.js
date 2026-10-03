@@ -21,6 +21,7 @@ export const profile = {
   leetcode: 'https://leetcode.com/u/MaiAtulHoon/',
   leetcodeHandle: 'MaiAtulHoon',
   linkedin: 'https://www.linkedin.com/in/atul-lilhare-27478b149',
+  email: '442atulilhare@gmail.com',
   timezone: 'Asia/Kolkata',
   tzLabel: 'IST',
 }
