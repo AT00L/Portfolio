@@ -11,13 +11,15 @@ import {
 import { useRef } from 'react'
 import { stack } from '../data'
 
-const COPIES = 4
+// Two copies are enough for a seamless loop while one copy is wider than the screen.
+const COPIES = 2
 const wrap = (min, max, v) => {
   const r = max - min
   return ((((v - min) % r) + r) % r) + min
 }
 
 // An endless ticker that speeds up — and flips direction — with scroll velocity.
+// `speed` is in items per second, so the pace doesn't depend on how long the list is.
 function Track({ items, speed, className, starClass }) {
   const reduce = useReducedMotion()
   const baseX = useMotionValue(0)
@@ -33,7 +35,8 @@ function Track({ items, speed, className, starClass }) {
     const f = factor.get()
     if (f < 0) direction.current = -1
     else if (f > 0) direction.current = 1
-    let move = direction.current * speed * (delta / 1000)
+    const percentPerSecond = (speed * 100) / (items.length * COPIES)
+    let move = direction.current * percentPerSecond * (delta / 1000)
     move += move * Math.abs(f)
     baseX.set(baseX.get() + move)
   })
@@ -73,13 +76,13 @@ export default function Marquee() {
     <section className="relative overflow-hidden py-[clamp(56px,8vw,110px)]" aria-label="Tech I work with">
       <Track
         items={stack}
-        speed={-2.2}
+        speed={-1.6}
         className="relative z-2 rotate-[-2.5deg] bg-accent text-ink"
         starClass="fill-current"
       />
       <Track
         items={reversed}
-        speed={1.6}
+        speed={1.15}
         className="-mt-[46px] rotate-2 border-y border-line bg-sunken text-fg-2 max-md:-mt-[30px]"
         starClass="fill-accent-text"
       />
