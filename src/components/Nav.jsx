@@ -66,13 +66,14 @@ export default function Nav({ lenis }) {
             href="#top"
             className="group/link inline-flex items-center gap-3 justify-self-start font-semibold tracking-[-0.01em]"
           >
-            {/* A dark tile in both themes, like the favicon. */}
-            <span
-              className="relative grid size-9 place-items-center rounded-[11px] border border-white/12 bg-[#111113] pb-1 font-serif text-[24px] leading-none font-normal text-accent italic transition-transform duration-[600ms] ease-smooth group-hover/link:-rotate-12 group-hover/link:scale-[1.06]"
-              aria-hidden="true"
-            >
-              a<i className="absolute right-[7px] bottom-[9px] size-1 rounded-full bg-accent" />
-            </span>
+            {/* The favicon itself, so the logo and the browser tab always match. */}
+            <img
+              src="/favicon.svg?v=2"
+              alt=""
+              width="36"
+              height="36"
+              className="size-9 rounded-lg ring-1 ring-white/12 transition-transform duration-600 ease-smooth group-hover/link:-rotate-12 group-hover/link:scale-[1.06]"
+            />
             <RollText text={profile.name} />
           </a>
 
