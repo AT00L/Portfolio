@@ -149,13 +149,16 @@ export default function Nav({ lenis }) {
                 </div>
               ))}
             </nav>
-            <div className="flex items-center justify-between gap-4 border-t border-line pt-5 font-mono text-[13px] leading-[normal] text-fg-2">
+            <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-line pt-5 font-mono text-[13px] leading-[normal] text-fg-2">
               <span className="flex gap-5">
                 <a href={profile.github} target="_blank" rel="noreferrer">
                   GitHub ↗
                 </a>
                 <a href={profile.leetcode} target="_blank" rel="noreferrer">
                   LeetCode ↗
+                </a>
+                <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                  LinkedIn ↗
                 </a>
               </span>
               <Clock />

@@ -3,7 +3,7 @@ import { profile } from '../data'
 import { ease, fadeUp, reveal } from '../motion'
 import { btn, btnGhost, btnSm, emphasis, eyebrow, mask, titleMask } from '../ui'
 import Clock from './Clock'
-import { ArrowIcon, CodeIcon, GitHubIcon } from './Icons'
+import { ArrowIcon, BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
 
@@ -52,7 +52,8 @@ export default function Contact() {
           >
             <p className="max-w-[40ch] text-[clamp(1.05rem,1.35vw,1.22rem)] text-fg-2">
               Always happy to talk shop — interesting problems, side projects, or just good
-              engineering. My code lives on GitHub, and my problem-solving on LeetCode.
+              engineering. My code lives on GitHub, my problem-solving on LeetCode, and my career on
+              LinkedIn.
             </p>
             <div className="mt-[26px] flex flex-wrap gap-2.5">
               <a
@@ -72,6 +73,15 @@ export default function Contact() {
               >
                 <CodeIcon />
                 <RollText text={`LeetCode · ${profile.leetcodeHandle}`} />
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className={`${btn} ${btnSm} ${btnGhost}`}
+              >
+                <BriefcaseIcon />
+                <RollText text="LinkedIn" />
               </a>
             </div>
           </motion.div>

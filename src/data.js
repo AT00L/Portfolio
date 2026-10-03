@@ -14,6 +14,7 @@ export const profile = {
   githubHandle: 'AT00L',
   leetcode: 'https://leetcode.com/u/MaiAtulHoon/',
   leetcodeHandle: 'MaiAtulHoon',
+  linkedin: 'https://www.linkedin.com/in/atul-lilhare-27478b149',
   timezone: 'Asia/Kolkata',
   tzLabel: 'IST',
 }
@@ -282,9 +283,10 @@ export const projects = [
     name: 'URL Shortener',
     kind: 'Full-stack App',
     blurb:
-      'A link shortener with user accounts. Sign up, log in, and manage your own short links with live click counts. JWT sessions in httpOnly cookies and hashed passwords.',
-    tags: ['Node.js', 'Express 5', 'MongoDB', 'JWT'],
+      'A link shortener with user accounts. Sign up, log in, and manage your own short links with live click counts. JWT sessions in httpOnly cookies and hashed passwords, deployed on Vercel.',
+    tags: ['Node.js', 'Express 5', 'MongoDB', 'JWT', 'Vercel'],
     repo: 'https://github.com/AT00L/URLSHORTNER',
+    live: 'https://url.atulcode.com',
     visual: 'shortener',
   },
   {

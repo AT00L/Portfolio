@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data'
 import { ease } from '../motion'
 import { btn, btnAccent, btnGhost, btnLg, dot, emphasis, titleMask } from '../ui'
-import { ArrowIcon, CodeIcon, GitHubIcon } from './Icons'
+import { ArrowIcon, BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
 
@@ -160,6 +160,17 @@ export default function Hero({ ready }) {
                 >
                   <CodeIcon />
                   <RollText text="LeetCode" />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${btn} ${btnLg} ${btnGhost}`}
+                >
+                  <BriefcaseIcon />
+                  <RollText text="LinkedIn" />
                 </a>
               </Magnetic>
             </motion.div>
