@@ -111,6 +111,34 @@ export function MailIcon({ size = 16 }) {
   )
 }
 
+export function UsersIcon({ size = 14 }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="shrink-0"
+    >
+      <circle cx="9" cy="8" r="3.5" />
+      <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14a6.5 6.5 0 0 1 3.5 6" />
+    </svg>
+  )
+}
+
+export function StarIcon({ size = 14 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" fill="currentColor" className="shrink-0">
+      <path d="M12 2.8l2.85 5.78 6.38.93-4.62 4.5 1.09 6.36L12 17.36l-5.7 3 1.09-6.35-4.62-4.5 6.38-.93z" />
+    </svg>
+  )
+}
+
 // A briefcase, for the LinkedIn links.
 export function BriefcaseIcon({ size = 16 }) {
   return (

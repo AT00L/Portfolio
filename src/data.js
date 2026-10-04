@@ -331,6 +331,8 @@ export const projects = [
     live: 'https://chromewebstore.google.com/detail/custom-css-injector/aebiehgbcchamlofdpcmdlfohffohghn',
     liveLabel: 'Chrome Web Store',
     liveCursor: 'Install',
+    // Users and rating are fetched live from the Chrome Web Store (see useStoreStats.js).
+    storeId: 'aebiehgbcchamlofdpcmdlfohffohghn',
     visual: 'injector',
     madeWithClaude: true,
   },

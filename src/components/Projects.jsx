@@ -1,9 +1,10 @@
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useRef, useState } from 'react'
 import { claudeCredit, projectFilters, projects } from '../data'
-import { btn, btnAccent, btnGhost, btnSm, section, tag, tags } from '../ui'
+import { btn, btnAccent, btnGhost, btnSm, dot, section, tag, tags } from '../ui'
 import useMediaQuery from '../useMediaQuery'
-import { ArrowIcon, GitHubIcon, SparkIcon } from './Icons'
+import useStoreStats from '../useStoreStats'
+import { ArrowIcon, GitHubIcon, SparkIcon, UsersIcon } from './Icons'
 import ProjectVisual from './ProjectVisual'
 import RollText from './RollText'
 import SectionHead from './SectionHead'
@@ -83,6 +84,32 @@ function Stack({ items, stacked }) {
   )
 }
 
+const stat =
+  'inline-flex items-center gap-1.5 rounded-full border border-accent-line bg-accent-soft px-3 py-[5px] text-[13px] font-medium text-fg'
+
+// Live numbers from the Chrome Web Store; hidden until they load, or if they can't.
+function StoreStats({ id }) {
+  const stats = useStoreStats(id)
+  if (!stats?.users) return null
+  return (
+    <div className="mt-5 flex flex-wrap items-center gap-2">
+      <span className={stat}>
+        <span className="text-accent-text">
+          <UsersIcon />
+        </span>
+        {stats.users} {stats.users === '1' ? 'user' : 'users'}
+      </span>
+      <span
+        className="ml-1 inline-flex items-center gap-2 font-mono text-[11px] leading-[normal] tracking-[0.08em] text-muted uppercase"
+        title="Refreshed about every 30 minutes"
+      >
+        <span className={`${dot} size-1.5`} aria-hidden="true" />
+        Live from Chrome Web Store
+      </span>
+    </div>
+  )
+}
+
 function Card({ project: p, index, total, progress, stacked }) {
   const ref = useRef(null)
   // Cards underneath shrink and darken slightly as the next one stacks on top.
@@ -134,6 +161,7 @@ function Card({ project: p, index, total, progress, stacked }) {
               </li>
             ))}
           </ul>
+          {p.storeId && <StoreStats id={p.storeId} />}
           <div className="mt-6 flex flex-wrap gap-2.5">
             <a
               href={p.repo}
