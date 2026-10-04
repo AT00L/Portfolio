@@ -16,8 +16,8 @@ export const profile = {
   companyUrl: 'https://cube.ms',
   years: 4,
   since: 2022,
-  github: 'https://github.com/AT00L',
-  githubHandle: 'AT00L',
+  github: 'https://github.com/heyAtul',
+  githubHandle: 'heyAtul',
   leetcode: 'https://leetcode.com/u/MaiAtulHoon/',
   leetcodeHandle: 'MaiAtulHoon',
   linkedin: 'https://www.linkedin.com/in/atul-lilhare-27478b149',
@@ -292,7 +292,7 @@ export const projects = [
     blurb:
       'A link shortener with user accounts. Sign up, log in, and manage your own short links with live click counts. JWT sessions in httpOnly cookies and hashed passwords, deployed on Vercel.',
     tags: ['Node.js', 'Express 5', 'MongoDB', 'JWT', 'Vercel'],
-    repo: 'https://github.com/AT00L/URLSHORTNER',
+    repo: 'https://github.com/heyAtul/URLSHORTNER',
     live: 'https://url.atulcode.com',
     visual: 'shortener',
   },
@@ -304,7 +304,7 @@ export const projects = [
     blurb:
       'A lab-test catalog browsable by category, with an admin view. A React + MUI + Tailwind client and an Express 5 + MongoDB product API, wired together with npm workspaces.',
     tags: ['React', 'MUI', 'Tailwind', 'Express 5', 'MongoDB'],
-    repo: 'https://github.com/AT00L/YourLabTest',
+    repo: 'https://github.com/heyAtul/YourLabTest',
     visual: 'monorepo',
   },
   {
@@ -315,7 +315,7 @@ export const projects = [
     blurb:
       'The site you’re scrolling. React 19 and Vite, with Lenis smooth scrolling and Motion for scroll-linked animation — tuned to stay at 60fps.',
     tags: ['React 19', 'Vite', 'Motion', 'Lenis'],
-    repo: 'https://github.com/AT00L/Portfolio',
+    repo: 'https://github.com/heyAtul/Portfolio',
     visual: 'portfolio',
     madeWithClaude: true,
   },
@@ -327,7 +327,7 @@ export const projects = [
     blurb:
       'Pick any element on any site, write CSS for it, and have it reapplied on every visit — even after the site renames its ids and classes. Ranked selectors plus an element fingerprint re-find the node; a DevTools sidebar pane gives exact control.',
     tags: ['Manifest V3', 'JavaScript', 'DevTools API', 'Zero dependencies'],
-    repo: 'https://github.com/AT00L/DOM-Styler-Custom-CSS-Injector',
+    repo: 'https://github.com/heyAtul/DOM-Styler-Custom-CSS-Injector',
     live: 'https://chromewebstore.google.com/detail/custom-css-injector/aebiehgbcchamlofdpcmdlfohffohghn',
     liveLabel: 'Chrome Web Store',
     liveCursor: 'Install',

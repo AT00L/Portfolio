@@ -105,7 +105,7 @@ function Shortener({ live }) {
           <b className="font-medium text-mark">$</b> curl -sI localhost:8000/PPBqWA9
         </p>
         <p className="text-[#7ee787]">HTTP/1.1 302 Found</p>
-        <p className={code.dim}>location: https://github.com/AT00L</p>
+        <p className={code.dim}>location: https://github.com/heyAtul</p>
       </div>
       <div className={`${greyWell} overflow-hidden font-mono text-[12px] leading-[normal]`}>
         <div className={`${row} text-[10.5px] tracking-[0.08em] text-muted uppercase`}>
@@ -115,7 +115,7 @@ function Shortener({ live }) {
         </div>
         <div className={`${row} border-t border-line bg-[rgba(96,165,250,0.08)] text-fg`}>
           <span className="text-mark">/PPBqWA9</span>
-          <span>github.com/AT00L</span>
+          <span>github.com/heyAtul</span>
           <span key={clicks} className="animate-bump">
             {clicks}
           </span>
