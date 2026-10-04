@@ -26,6 +26,14 @@ export const profile = {
   tzLabel: 'IST',
 }
 
+// The live site, for search engines. If the domain changes, also update the
+// canonical/og:url tags in index.html and public/robots.txt + public/sitemap.xml.
+export const site = {
+  url: 'https://atulcode.com/',
+  name: 'AtulCode',
+  title: 'Atul Lilhare (AtulCode) — MERN & React Native Developer',
+}
+
 // The scrolling ticker under the hero.
 export const stack = [
   'React Native',

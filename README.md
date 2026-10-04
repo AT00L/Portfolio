@@ -7,7 +7,7 @@ Personal portfolio built with React 19, Vite and [Tailwind CSS 4](https://tailwi
 ```bash
 npm install
 npm run dev       # http://localhost:5173
-npm run build     # production build in dist/
+npm run build     # production build in dist/, prerendered (see SEO below)
 npm run preview   # serve the build locally
 ```
 
@@ -21,6 +21,13 @@ Everything the site says lives in [`src/data.js`](src/data.js): name, the roles 
 ## Theme
 
 Dark by default, with a toggle in the nav that switches to light (the choice is saved in the browser). All colours are CSS variables at the top of `src/index.css` (the light set on `:root`, the dark set under `[data-theme='dark']`), exposed to Tailwind as classes like `bg-page`, `text-fg` and `border-line`. Use `dark:` / `light:` for anything that differs per theme.
+
+## SEO
+
+- **Prerendering:** `npm run build` also renders the page to HTML (`src/entry-server.jsx`, `scripts/prerender.js`) and writes it into `dist/index.html`, so search engines get the full content without running JavaScript. In the browser, React renders over it from scratch. Code that touches `window` or `document` while rendering needs a `typeof window === 'undefined'` guard, or the build fails.
+- **Structured data:** `src/seo.js` builds the schema.org Person / WebSite / ProfilePage data from `data.js` (name, AtulCode, job, GitHub/LinkedIn/LeetCode links, skills). It's added to the built page automatically.
+- **Head tags:** title, description, canonical URL and link-preview tags are in `index.html`. The preview image is `public/og-image.png` (1200×630).
+- **Crawling:** `public/robots.txt` and `public/sitemap.xml`. The domain (`https://atulcode.com/`) is in those, `index.html`, and `site` in `data.js`.
 
 ## Structure
 

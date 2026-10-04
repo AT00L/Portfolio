@@ -2,7 +2,8 @@ import { useSyncExternalStore } from 'react'
 
 // The theme lives on <html data-theme>. index.html sets it before first paint:
 // dark by default, light if the visitor chose it.
-const root = document.documentElement
+// There's no document when the page is prerendered at build time (scripts/prerender.js).
+const root = typeof document === 'undefined' ? null : document.documentElement
 const colors = { light: '#dff0fd', dark: '#0b0f19' }
 
 const read = () => (root.dataset.theme === 'dark' ? 'dark' : 'light')
@@ -14,7 +15,8 @@ const subscribe = (onChange) => {
 }
 
 export function useTheme() {
-  return useSyncExternalStore(subscribe, read)
+  // The prerendered page uses the default, dark.
+  return useSyncExternalStore(subscribe, read, () => 'dark')
 }
 
 function apply(theme) {

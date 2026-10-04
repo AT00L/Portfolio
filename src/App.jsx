@@ -13,7 +13,9 @@ import Preloader from './components/Preloader'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 
-const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+// `window` is missing when the page is prerendered at build time (scripts/prerender.js).
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 // Show the intro once per browser session.
 function introSeen() {

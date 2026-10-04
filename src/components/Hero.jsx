@@ -33,8 +33,8 @@ export default function Hero({ ready }) {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94])
 
   // Soft glow that trails the pointer. It's moved with transforms only, so no repaints.
-  const gx = useMotionValue(window.innerWidth * 0.7)
-  const gy = useMotionValue(window.innerHeight * 0.3)
+  const gx = useMotionValue(typeof window === 'undefined' ? 0 : window.innerWidth * 0.7)
+  const gy = useMotionValue(typeof window === 'undefined' ? 0 : window.innerHeight * 0.3)
   const sgx = useSpring(gx, { stiffness: 40, damping: 20 })
   const sgy = useSpring(gy, { stiffness: 40, damping: 20 })
 

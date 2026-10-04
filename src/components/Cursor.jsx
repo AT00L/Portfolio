@@ -6,7 +6,8 @@ const follow = { stiffness: 500, damping: 40, mass: 0.6 }
 // A trailing ring that grows over interactive elements. Mouse devices only.
 export default function Cursor() {
   const [enabled] = useState(
-    () => window.matchMedia('(hover: hover) and (pointer: fine)').matches,
+    () =>
+      typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches,
   )
   const [state, setState] = useState({ active: false, label: '', visible: false })
   const x = useMotionValue(-100)

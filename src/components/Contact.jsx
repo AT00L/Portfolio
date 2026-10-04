@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { profile } from '../data'
+import { profile, site } from '../data'
 import { ease, fadeUp, reveal } from '../motion'
 import { btn, btnGhost, btnSm, emphasis, eyebrow, mask, titleMask } from '../ui'
 import Clock from './Clock'
@@ -115,7 +115,7 @@ export default function Contact() {
         </motion.p>
         <div className="wrap mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-[26px] pb-[30px] font-mono text-[12px] leading-[normal] tracking-[0.06em] text-muted uppercase">
           <span>
-            © {new Date().getFullYear()} {profile.name}
+            © {new Date().getFullYear()} {profile.name} · {site.name}
           </span>
           <span className="max-sm:hidden">Built with React, Motion, Lenis &amp; Tailwind</span>
           <Clock />

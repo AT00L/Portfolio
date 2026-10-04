@@ -21,6 +21,7 @@ export default function Preloader({ onDone }) {
 
   return (
     <motion.div
+      data-preloader
       className="fixed inset-0 z-200 flex flex-col justify-between bg-page p-(--gutter) text-fg"
       exit={{ clipPath: 'inset(0 0 100% 0)', transition: { duration: 1, ease: curtain } }}
       initial={{ clipPath: 'inset(0 0 0% 0)' }}

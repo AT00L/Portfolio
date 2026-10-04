@@ -265,6 +265,11 @@
     border-radius: 6px;
   }
 
+  /* The prerendered intro screen, when the app will skip the intro (see index.html). */
+  .no-intro [data-preloader] {
+    display: none;
+  }
+
   /* Theme switch: the new theme grows out of the toggle (see theme.js). */
   ::view-transition-old(root),
   ::view-transition-new(root) {
