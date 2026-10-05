@@ -7,7 +7,7 @@ import {
   useTransform,
 } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
-import { profile } from '../data'
+import { profile, projects } from '../data'
 import { ease } from '../motion'
 import { btn, btnAccent, btnGhost, btnLg, dot, emphasis, titleMask } from '../ui'
 import { ArrowIcon, BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
@@ -210,7 +210,8 @@ export default function Hero({ ready }) {
 const script = [
   { cmd: 'whoami', out: 'atul — software developer (web + mobile)' },
   { cmd: 'cat experience.txt', out: `${profile.years}+ years @ ${profile.company} · still shipping` },
-  { cmd: 'ls ~/projects', out: 'css-injector  url-shortener  yourlabtest  portfolio' },
+  // Like real `ls`: every project's id, in alphabetical order.
+  { cmd: 'ls ~/projects', out: projects.map((p) => p.id).sort().join('  ') },
 ]
 
 // Types each phrase, holds it, deletes it, then moves to the next one.

@@ -96,7 +96,7 @@ export const about =
 
 export const stats = [
   { value: 4, suffix: '+', label: 'Years shipping production code' },
-  { value: 6, suffix: '', label: 'Public repos on GitHub' },
+  { value: 7, suffix: '', label: 'Public repos on GitHub' },
   { value: 3, suffix: '', label: 'Platforms I build for — web, iOS, Android' },
 ]
 
@@ -293,12 +293,24 @@ export const projectFilters = ['All', 'Full-stack', 'Frontend', 'Backend', 'Exte
 
 export const projects = [
   {
+    id: 'chat',
+    categories: ['Full-stack', 'Backend'],
+    name: 'Real-time Chat',
+    kind: 'Full-stack App',
+    blurb:
+      'A WhatsApp-style messenger. Log in with a one-time code sent to your email, search for people, and chat one-to-one in real time over Socket.IO, with every message saved in MongoDB. The React client runs on Cloudflare and the Express API on Render.',
+    tags: ['React', 'Socket.IO', 'Express 5', 'MongoDB', 'Resend'],
+    repo: 'https://github.com/heyAtul/Chat',
+    live: 'https://chat.atulcode.com',
+    visual: 'chat',
+  },
+  {
     id: 'url-shortener',
     categories: ['Full-stack', 'Backend'],
     name: 'URL Shortener',
     kind: 'Full-stack App',
     blurb:
-      'A link shortener with user accounts. Sign up, log in, and manage your own short links with live click counts. JWT sessions in httpOnly cookies and hashed passwords, deployed on Vercel.',
+      'A link shortener with user accounts. Sign up with a one-time code sent to your email, then shorten links, track their clicks, and download a QR code for any of them. Server-rendered Express 5 pages with JWT sessions in httpOnly cookies, deployed on Vercel.',
     tags: ['Node.js', 'Express 5', 'MongoDB', 'JWT', 'Vercel'],
     repo: 'https://github.com/heyAtul/URLSHORTNER',
     live: 'https://url.atulcode.com',
@@ -310,10 +322,10 @@ export const projects = [
     name: 'YourLabTest',
     kind: 'Monorepo',
     blurb:
-      'A lab-test catalog browsable by category, with an admin view. A React + MUI + Tailwind client and an Express 5 + MongoDB product API, wired together with npm workspaces.',
+      'Community-funded lab testing for supplements, in beta. Browse categories like whey protein and creatine, filter products by brand, and vote for the ones you want tested; an admin page manages brands and products. A React + MUI client and an Express 5 + MongoDB API, wired together with npm workspaces.',
     tags: ['React', 'MUI', 'Tailwind', 'Express 5', 'MongoDB'],
     repo: 'https://github.com/heyAtul/YourLabTest',
-    visual: 'monorepo',
+    visual: 'labtest',
   },
   {
     id: 'portfolio',
