@@ -1,0 +1,14 @@
+// Deploys the prebuilt `dist` folder as static assets. Having this file stops
+// `wrangler deploy` from auto-configuring the project, which adds the Cloudflare
+// Vite plugin and breaks the SSR build that scripts/prerender.js depends on.
+{
+  "name": "portfolio",
+  "compatibility_date": "2026-10-01",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
