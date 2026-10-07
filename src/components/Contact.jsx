@@ -4,7 +4,7 @@ import { ease, fadeUp, reveal } from '../motion'
 import { btn, btnGhost, btnSm, emphasis, eyebrow, mask, titleMask } from '../ui'
 import Clock from './Clock'
 import EmailButton from './EmailButton'
-import { BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
+import { BriefcaseIcon, CodeIcon, GitHubIcon, ResumeIcon } from './Icons'
 import RollText from './RollText'
 
 const inView = { once: true, margin: '-10% 0px' }
@@ -82,6 +82,15 @@ export default function Contact() {
               >
                 <BriefcaseIcon />
                 <RollText text="LinkedIn" />
+              </a>
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                className={`${btn} ${btnSm} ${btnGhost}`}
+              >
+                <ResumeIcon />
+                <RollText text="Resume" />
               </a>
             </div>
           </motion.div>

@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { profile, projects } from '../data'
 import { ease } from '../motion'
 import { btn, btnAccent, btnGhost, btnLg, dot, emphasis, titleMask } from '../ui'
-import { ArrowIcon, BriefcaseIcon, CodeIcon, GitHubIcon } from './Icons'
+import { ArrowIcon, BriefcaseIcon, CodeIcon, GitHubIcon, ResumeIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
 
@@ -171,6 +171,18 @@ export default function Hero({ ready }) {
                 >
                   <BriefcaseIcon />
                   <RollText text="LinkedIn" />
+                </a>
+              </Magnetic>
+              {/* Phones only: wider screens have the Resume button in the nav. */}
+              <Magnetic className="sm:hidden">
+                <a
+                  href={profile.resume}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${btn} ${btnLg} ${btnGhost}`}
+                >
+                  <ResumeIcon />
+                  <RollText text="Resume" />
                 </a>
               </Magnetic>
             </motion.div>

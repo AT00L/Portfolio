@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { profile } from '../data'
 import { btn, btnGhost, btnSm, mask } from '../ui'
 import Clock from './Clock'
-import { GitHubIcon } from './Icons'
+import { GitHubIcon, ResumeIcon } from './Icons'
 import Magnetic from './Magnetic'
 import RollText from './RollText'
 import ThemeToggle from './ThemeToggle'
@@ -103,6 +103,17 @@ export default function Nav({ lenis }) {
                 <RollText text="GitHub" />
               </a>
             </Magnetic>
+            <Magnetic strength={0.25} className="max-sm:hidden">
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                className={`${btn} ${btnSm} ${btnGhost}`}
+              >
+                <ResumeIcon />
+                <RollText text="Resume" />
+              </a>
+            </Magnetic>
             <button
               type="button"
               className="relative hidden size-11 rounded-full border border-line-2 max-lg:block"
@@ -160,6 +171,9 @@ export default function Nav({ lenis }) {
                 </a>
                 <a href={profile.linkedin} target="_blank" rel="noreferrer">
                   LinkedIn ↗
+                </a>
+                <a href={profile.resume} target="_blank" rel="noreferrer">
+                  Resume ↗
                 </a>
               </span>
               <Clock />
